@@ -6,6 +6,8 @@ import styles from "./portfolio.module.css"
 import Image from "next/image";
 import BackgroundPaths from "./components/BackgroundPaths";
 import TwinklingStars from "./components/TwinklingStars";
+import CursorFollower from "./components/CursorFollower"
+
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(true)
@@ -98,6 +100,14 @@ export default function Portfolio() {
   github: "https://github.com/AbdullahUsama/video-stream-app", // Replace with actual URL
   demo: "https://video-stream-app-delta.vercel.app/",
 },
+{
+  title: "Transformer From Scratch",
+  description:
+    "Educational implementation of the Transformer architecture based on the 'Attention Is All You Need' paper. Built from scratch in PyTorch to understand attention, positional encoding, multi-head mechanisms, and encoder-decoder structure.",
+  tech: ["PyTorch", "Python", "NLP", "Deep Learning", "Attention", "Positional Encoding"],
+  github: "https://github.com/AbdullahUsama/transformer-from-scratch", // Replace with your actual GitHub repo URL
+}
+
 
   ]
 
@@ -112,6 +122,7 @@ export default function Portfolio() {
 
   return (
     <div className={styles.container}>
+      <CursorFollower />
       {/* Navigation */}
       <nav className={styles.nav}>
         <div className={styles.navContent}>
@@ -137,7 +148,8 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <section id="hero" className={styles.hero}>
-        <TwinklingStars />
+        <TwinklingStars darkMode={darkMode} />
+        <BackgroundPaths />
   <div className={styles.heroContentFlex}>
     <div className={styles.heroImageWrapper}>
       <img

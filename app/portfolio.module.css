@@ -25,7 +25,7 @@
 }
 
 /* Navigation */
-.nav {
+/* .nav {
   position: fixed;
   top: 0;
   width: 100%;
@@ -38,6 +38,30 @@
 
 [data-theme="light"] .nav {
   background-color: rgba(255, 255, 255, 0.8);
+} */
+
+.nav {
+  position: fixed;
+  top: 2rem;                /* Add some space from the top */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 4rem); /* Leave space on both sides */
+  max-width: 900px;         /* Optional: limit width for a floating look */
+  z-index: 50;
+  backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(255, 255, 255, 0.18); /* Glassy white for light mode */
+  border-radius: 4rem;
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  padding: 0.2rem 1.25rem;
+}
+
+/* Dark mode glass effect */
+[data-theme="dark"] .nav {
+  background: rgba(20, 20, 30, 0.28);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
 }
 
 .heroContentFlex {
@@ -74,6 +98,23 @@
   height: 600px;
   object-fit: contain;
   display: block;
+}
+
+@media (max-width: 600px) {
+  .heroImage {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    object-position: top;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 10vh; /* Decrease from 100vh to 60vh */
+    padding-top: 2rem; /* Optional: add some top padding if needed */
+    padding-bottom: 0.1rem; /* Optional: add some bottom padding */
+  }
 }
 
 .heroTextBlock {
@@ -177,10 +218,13 @@
   margin: 0 auto;
   padding: 0 2rem;
   text-align: center;
+  z-index: 10;
 }
 
 .heroText {
   margin-bottom: 2rem;
+  z-index: 10;
+
 }
 
 .heroTitle {
@@ -188,6 +232,8 @@
   font-weight: 300;
   letter-spacing: -0.025em;
   margin: 0 0 1.5rem 0;
+  z-index: 10;
+
 }
 
 
@@ -198,9 +244,10 @@
 }
 
 .heroDivider {
-  width: 6rem;
-  height: 1px;
-  background-color: var(--border-color);
+  width: 8rem;
+  height: 2px;
+  /* background-color: var(--border-color); */
+  background-color: rgb(52, 93, 85);
   margin: 0 auto 1.5rem auto;
 }
 
@@ -209,6 +256,8 @@
   font-weight: 300;
   color: var(--text-secondary);
   margin: 0;
+  z-index: 10;
+
 }
 
 @media (max-width: 600px) {
@@ -235,6 +284,8 @@
 .heroDescription {
   padding-top: 3rem;
   margin-bottom: 3rem;
+  z-index: 10;
+
 }
 
 .heroDescription p {
@@ -243,12 +294,16 @@
   max-width: 32rem;
   margin: 0 auto;
   color: var(--text-secondary);
+  z-index: 10;
+
 }
 
 .heroActions {
   display: flex;
   justify-content: center;
   padding-top: 3rem;
+  z-index: 10;
+
 }
 
 .ctaButton {
