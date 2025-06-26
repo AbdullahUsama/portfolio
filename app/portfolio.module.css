@@ -210,6 +210,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 6rem; /* or whatever height you want to offset for the navbar */
+
   /* overflow: hidden; */
 }
 
