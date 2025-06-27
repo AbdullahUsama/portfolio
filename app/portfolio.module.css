@@ -49,8 +49,8 @@
   max-width: 900px;         /* Optional: limit width for a floating look */
   z-index: 50;
   backdrop-filter: blur(24px) saturate(180%);
-  background: rgba(255, 255, 255, 0.18); /* Glassy white for light mode */
-  border-radius: 4rem;
+  background: rgba(255, 255, 255, 0.05); /* Glassy white for light mode */
+  border-radius: 2rem;
   border: 1px solid rgba(255,255,255,0.35);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
   transition: all 0.3s cubic-bezier(.4,0,.2,1);
@@ -309,23 +309,31 @@
 }
 
 .ctaButton {
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+  transition: background 0.18s, color 0.18s;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 2rem;
-  border: 1px solid var(--border-color);
-  background: none;
-  color: var(--text-primary);
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  opacity: 0.9;
 }
 
-.ctaButton:hover {
-  border-color: var(--border-hover);
-  background-color: var(--text-primary);
-  color: var(--bg-primary);
+[data-theme="dark"] .ctaButton {
+  background: #fff;
+  color: #111;
+}
+
+[data-theme="dark"] .ctaButton:hover,
+[data-theme="dark"] .ctaButton:active {
+  background: #e5e7eb;
+  color: #111;
 }
 
 .ctaButton svg {

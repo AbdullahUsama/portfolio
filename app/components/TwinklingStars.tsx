@@ -149,7 +149,7 @@ return (
         <title>Background Floating Paths</title>
         {Array.from({ length: 80 }).map((_, i) => {
           // Distribute paths more widely and make them larger
-          const offset = i * 48;
+          const offset = i * 50;
           const color = PASTEL_COLORS[i % PASTEL_COLORS.length];
           const d = `
             M${400 + offset} ${200 + i * 20}
@@ -160,7 +160,7 @@ return (
               key={i}
               d={d}
               stroke={color}
-              strokeWidth={400 + i * 500}
+              strokeWidth={100 + i * 400}
               strokeOpacity={1 + i * 1}
               fill="none"
               initial={{ pathLength: 0.3, opacity: 0.5 }}

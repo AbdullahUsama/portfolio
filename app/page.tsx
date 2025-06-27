@@ -55,7 +55,7 @@ export default function Portfolio() {
     {
       title: "DAWN News AI Agent",
       description:
-        "Intelligent web-based assistant for analyzing DAWN newspaper editorials with AI-powered backend and interactive frontend.",
+        "It allows students and aspirants to get Editorials on particular topic, with any date range provided. Also get explanation, vocab words, phrases and idioms by just mentioning it.",
       tech: ["FastAPI", "LangChain", "Next.js", "Gemini 2.0"],
       github: "https://github.com/AbdullahUsama/dawn-ai-agent",
       demo: "https://dawn-ai-frontend.vercel.app/",
@@ -145,7 +145,7 @@ export default function Portfolio() {
           </button>
         </div>
       </nav>
-
+      
       {/* Hero Section */}
       <section id="hero" className={styles.hero}>
         <TwinklingStars darkMode={darkMode} />
