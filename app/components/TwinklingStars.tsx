@@ -3,14 +3,23 @@ import { motion } from "framer-motion"
 
 
 const STAR_COUNT = 160;
+// const PASTEL_COLORS = [
+//   "#FFD6E0", // pink
+//   "#B5EAD7", // mint
+//   "#C7CEEA", // lavender
+//   "#FFDAC1", // peach
+//   "#E2F0CB", // light green
+//   "#FFFACD", // lemon
+//   "#B5D8FA", // blue
+// ];
 const PASTEL_COLORS = [
-  "#FFD6E0", // pink
-  "#B5EAD7", // mint
-  "#C7CEEA", // lavender
-  "#FFDAC1", // peach
-  "#E2F0CB", // light green
-  "#FFFACD", // lemon
-  "#B5D8FA", // blue
+  "#FF69B4", // hot pink
+  "#40E0D0", // turquoise
+  "#9370DB", // medium purple
+  "#FFA07A", // light salmon
+  "#90EE90", // light green
+  "#FFFF66", // light yellow
+  "#87CEFA", // light sky blue
 ];
 
 function getRandom(min: number, max: number) {
@@ -93,10 +102,7 @@ export default function TwinklingStars({ darkMode }: { darkMode: boolean }) {
     }
   }, []);
 
-// ...existing code...
-// ...existing code...
-// ...existing code...
-// ...existing code...
+
 
 return (
   <div
@@ -161,13 +167,13 @@ return (
               d={d}
               stroke={color}
               strokeWidth={100 + i * 400}
-              strokeOpacity={1 + i * 1}
+              strokeOpacity={0.8}
               fill="none"
               initial={{ pathLength: 0.3, opacity: 0.5 }}
               animate={{
                 pathLength: 1,
                 opacity: [0.3, 0.5, 0.3],
-                pathOffset: [0, 1, 0],
+                pathOffset: [1, 0, 0.5, 0, 0.5],
               }}
               transition={{
                 duration: 28 + Math.random() * 14,
