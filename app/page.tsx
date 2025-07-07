@@ -55,7 +55,7 @@ export default function Portfolio() {
     {
       title: "News AI Agent",
       description:
-        "The Pakistan News AI Assistant is an intelligent agent designed to help students and users understand editorial and opinion articles from DAWN (Editorial & Op-Ed), The Tribune (Editorial), and ParadigmShift (National & International Relations) newspapers. It provides various functionalities, including getting all the articles related to a certain topic, scraping articles, extracting key information like URLs, and offering educational insights such as vocabulary words and idioms from the content. ",
+        "The Pakistan News AI Assistant is an intelligent agent designed to help students and aspirants understand editorial and opinion articles from DAWN (Editorial & Op-Ed), The Tribune (Editorial), and ParadigmShift (National & International Relations) newspapers. It provides various functionalities, including getting all the articles related to a certain topic, scraping articles, extracting key information. ",
       tech: ["FastAPI", "LangChain", "Next.js", "Gemini 2.0"],
       github: "https://github.com/AbdullahUsama/dawn-ai-agent",
       demo: "https://dawn-ai-frontend.vercel.app/",
@@ -224,46 +224,62 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Experience Section */}
       <section id="experience" className={styles.experience}>
-        <div className={styles.experienceContent}>
-          <h2 className={styles.sectionTitle}>Experience</h2>
+  <div className={styles.experienceContent}>
+    <h2 className={styles.sectionTitle}>Experience</h2>
 
-          <div className={styles.experienceList}>
-            <div className={styles.experienceItem}>
-              <div className={styles.experienceDate}>
-                <p>April 2025 – May 2025</p>
-              </div>
-              <div className={styles.experienceDetails}>
-                <h3 className={styles.experienceTitle}>ML Intern</h3>
-                <p className={styles.experienceCompany}>OneScreen Solutions, San Diego, California (Remote)</p>
-                <ul className={styles.experienceDescription}>
-                  <li> - Worked with Vision Transformers (ViT-32) and Vision-Language Models (VLMs) like PaLI-Gemma</li>
-                  <li> - Achieved 7-10% higher mAP by reducing label noise and improving object localization</li>
-                  <li> - Developed end-to-end pipeline combining SAM's pixel-level masks with YOLO annotations</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.experienceDivider} />
-
-            <div className={styles.experienceItem}>
-              <div className={styles.experienceDate}>
-                <p>June 2024 – Aug 2024</p>
-              </div>
-              <div className={styles.experienceDetails}>
-                <h3 className={styles.experienceTitle}>Computer Vision Intern</h3>
-                <p className={styles.experienceCompany}>Machine Vision & Intelligent Systems Lab (MachVis), SEECS</p>
-                <ul className={styles.experienceDescription}>
-                  <li> - Engineered computer vision pipelines for real-time object detection and tracking</li>
-                  <li> - Implemented robust feature extraction methods including ORB and optical flow</li>
-                  <li> - Developed real-time tracking systems using SORT and Kalman Filters</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+    <div className={styles.experienceList}>
+      <div className={styles.experienceItem}>
+        <div className={styles.experienceDate}>
+          <p>June 2025 – Present</p>
         </div>
-      </section>
+        <div className={styles.experienceDetails}>
+          <h3 className={styles.experienceTitle}>AI Intern</h3>
+          <p className={styles.experienceCompany}>Crimson Labs, SEECS</p>
+          <ul className={styles.experienceDescription}>
+            <li> - Working on finetuning LLMs</li>
+            <li> - Creating AI Chatbots for Education</li>
+            <li> - RAG - Based Systems for Learning</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={styles.experienceDivider} />
+
+      <div className={styles.experienceItem}>
+        <div className={styles.experienceDate}>
+          <p>April 2025 – May 2025</p>
+        </div>
+        <div className={styles.experienceDetails}>
+          <h3 className={styles.experienceTitle}>ML Intern</h3>
+          <p className={styles.experienceCompany}>OneScreen Solutions, San Diego, California (Remote)</p>
+          <ul className={styles.experienceDescription}>
+            <li> - Worked with Vision Transformers (ViT-32) and Vision-Language Models (VLMs) like PaLI-Gemma</li>
+            <li> - Achieved 7-10% higher mAP by reducing label noise and improving object localization</li>
+            <li> - Developed end-to-end pipeline combining SAM's pixel-level masks with YOLO annotations</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={styles.experienceDivider} />
+
+      <div className={styles.experienceItem}>
+        <div className={styles.experienceDate}>
+          <p>June 2024 – Aug 2024</p>
+        </div>
+        <div className={styles.experienceDetails}>
+          <h3 className={styles.experienceTitle}>Computer Vision Intern</h3>
+          <p className={styles.experienceCompany}>Machine Vision & Intelligent Systems Lab (MachVis), SEECS</p>
+          <ul className={styles.experienceDescription}>
+            <li> - Engineered computer vision pipelines for real-time object detection and tracking</li>
+            <li> - Implemented robust feature extraction methods including ORB and optical flow</li>
+            <li> - Developed real-time tracking systems using SORT and Kalman Filters</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Projects Section */}
       <section id="projects" className={styles.projects}>
