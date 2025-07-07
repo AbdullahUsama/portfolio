@@ -53,9 +53,9 @@ export default function Portfolio() {
 
   const projects = [
     {
-      title: "DAWN News AI Agent",
+      title: "News AI Agent",
       description:
-        "It allows students and aspirants to get Editorials on particular topic, with any date range provided. Also get explanation, vocab words, phrases and idioms by just mentioning it.",
+        "The Pakistan News AI Assistant is an intelligent agent designed to help students and users understand editorial and opinion articles from DAWN (Editorial & Op-Ed), The Tribune (Editorial), and ParadigmShift (National & International Relations) newspapers. It provides various functionalities, including getting all the articles related to a certain topic, scraping articles, extracting key information like URLs, and offering educational insights such as vocabulary words and idioms from the content. ",
       tech: ["FastAPI", "LangChain", "Next.js", "Gemini 2.0"],
       github: "https://github.com/AbdullahUsama/dawn-ai-agent",
       demo: "https://dawn-ai-frontend.vercel.app/",
