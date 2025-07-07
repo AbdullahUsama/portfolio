@@ -1,12 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Moon, Sun, Mail, Phone, Github, Linkedin, ExternalLink, ArrowRight } from "lucide-react"
+import { Moon, Sun, Mail, Phone, Github, Linkedin, ExternalLink, ArrowRight, Download } from "lucide-react"
 import styles from "./portfolio.module.css"
 import Image from "next/image";
 import BackgroundPaths from "./components/BackgroundPaths";
 import TwinklingStars from "./components/TwinklingStars";
 import CursorFollower from "./components/CursorFollower"
+// import { Download } from ""; // Import Download icon
 
 
 export default function Portfolio() {
@@ -146,7 +147,7 @@ export default function Portfolio() {
         </div>
       </nav>
       
-      {/* Hero Section */}
+      {/* Hero Section
       <section id="hero" className={styles.hero}>
         <TwinklingStars darkMode={darkMode} />
         <BackgroundPaths />
@@ -177,6 +178,46 @@ export default function Portfolio() {
           <span>Get In Touch</span>
           <ArrowRight size={16} />
         </button>
+      </div>
+    </div>
+  </div>
+</section> */}
+{/* Hero Section */}
+      <section id="hero" className={styles.hero}>
+        <TwinklingStars darkMode={darkMode} />
+        <BackgroundPaths />
+  <div className={styles.heroContentFlex}>
+    <div className={styles.heroImageWrapper}>
+      <img
+        src="me.jpg" // Place your image in the public folder as 'me.jpg'
+        alt="Abdullah Usama"
+        width={600}    // required
+        height={600}
+        className={styles.heroImage}
+      />
+    </div>
+    <div className={styles.heroTextBlock}>
+      <div className={styles.heroText}>
+        <h1 className={styles.heroTitle}>Abdullah Usama</h1>
+        <div className={styles.heroDivider} />
+        <p className={styles.heroSubtitle}>Software Engineering Student & ML/AI Engineer</p>
+      </div>
+      <div className={styles.heroDescription}>
+        <p>
+          Passionate about machine learning, computer vision, and building scalable software solutions. Currently
+          exploring AI Agents and Automation.
+        </p>
+      </div>
+      <div className={styles.heroActions}>
+        <button onClick={() => scrollToSection("contact")} className={styles.ctaButton}>
+          <span>Get In Touch</span>
+          <ArrowRight size={16} />
+        </button>
+        {/* New Download CV Button */}
+        <a href="/Abdullah_Usama_CV.pdf" download className={styles.ctaButton}> {/* Assuming your CV is in the public folder as Abdullah_Usama_CV.pdf */}
+          <span>Download CV</span>
+          <Download size={16} />
+        </a>
       </div>
     </div>
   </div>

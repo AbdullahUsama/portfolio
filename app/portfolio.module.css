@@ -40,29 +40,7 @@
   background-color: rgba(255, 255, 255, 0.8);
 } */
 
-.nav {
-  position: fixed;
-  top: 2rem;                /* Add some space from the top */
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 4rem); /* Leave space on both sides */
-  max-width: 900px;         /* Optional: limit width for a floating look */
-  z-index: 50;
-  backdrop-filter: blur(24px) saturate(180%);
-  background: rgba(255, 255, 255, 0.05); /* Glassy white for light mode */
-  border-radius: 2rem;
-  border: 1px solid rgba(255,255,255,0.35);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
-  transition: all 0.3s cubic-bezier(.4,0,.2,1);
-  padding: 0.2rem 1.25rem;
-}
 
-/* Dark mode glass effect */
-[data-theme="dark"] .nav {
-  background: rgba(20, 20, 30, 0.28);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
-}
 
 .heroContentFlex {
   display: flex;
@@ -130,6 +108,30 @@
     max-width: 70vw;
     max-height: 70vw;
   }
+}
+
+.nav {
+  position: fixed;
+  top: 2rem;                /* Add some space from the top */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 4rem); /* Leave space on both sides */
+  max-width: 900px;         /* Optional: limit width for a floating look */
+  z-index: 50;
+  backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(255, 255, 255, 0.05); /* Glassy white for light mode */
+  border-radius: 2rem;
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  padding: 0.2rem 1.25rem;
+}
+
+/* Dark mode glass effect */
+[data-theme="dark"] .nav {
+  background: rgba(20, 20, 30, 0.28);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
 }
 
 .navContent {
@@ -284,10 +286,12 @@
 }
 
 .heroDescription {
-  padding-top: 3rem;
-  margin-bottom: 3rem;
+  /* padding-top: 3rem; */
+  /* margin-bottom: 3rem; */
   z-index: 10;
-
+  /* display: none; */
+  max-width: 22rem;
+  font-style: unset;
 }
 
 .heroDescription p {
@@ -303,12 +307,12 @@
 .heroActions {
   display: flex;
   justify-content: center;
-  padding-top: 3rem;
+  /* padding-top: 3rem; */
   z-index: 10;
 
 }
 
-.ctaButton {
+/* .ctaButton {
   background: #111;
   color: #fff;
   border: none;
@@ -323,6 +327,50 @@
   align-items: center;
   gap: 0.5rem;
   opacity: 0.9;
+  margin: 1rem;
+}
+
+[data-theme="dark"] .ctaButton {
+  background: #fff;
+  color: #111;
+} */
+
+.ctaButton {
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.8rem 1.5rem; /* Default padding for larger screens */
+  font-size: 1.1rem;      /* Default font size for larger screens */
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+  transition: background 0.18s, color 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.9;
+  margin: 1rem; /* This margin might be contributing to the "fat" look, especially if on a flex item without wrapping */
+}
+
+/* Styles for the heroActions container to handle button layout */
+.heroActions {
+  display: flex;
+  flex-wrap: wrap; /* Allows buttons to wrap to the next line on smaller screens */
+  gap: 15px; /* Adjust spacing between buttons */
+  margin-top: 30px;
+  justify-content: center; /* Center buttons when they wrap */
+}
+
+
+/* Media query for smaller screens (e.g., max-width 768px, adjust as needed) */
+@media (max-width: 768px) {
+  .ctaButton {
+    padding: 0.7rem 1.2rem; /* Reduce padding for smaller screens */
+    font-size: 1rem;       /* Reduce font size for smaller screens */
+    /* If margin is making them too far apart, you might adjust it here */
+    margin: 0.5rem; /* Reduce margin on mobile */
+  }
 }
 
 [data-theme="dark"] .ctaButton {
