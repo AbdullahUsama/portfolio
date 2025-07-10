@@ -64,10 +64,18 @@ export default function Portfolio() {
     {
       title: "Bounding Box Refinement Pipeline",
       description:
-        "Data preprocessing pipeline integrating SAM with YOLO for improved object localization and detection performance.",
+        "Pipeline to make YOLO bounding boxes more precise and tight around the target objects. Making the data more precise and improving localization.",
       tech: ["YOLO", "SAM", "Computer Vision", "Python"],
       github: "https://github.com/AbdullahUsama/fixing-loose-bounding-boxes",
       demo: "https://medium.com/@ausama.bese22seecs/fixing-loose-bounding-boxes-a-sam-powered-approach-for-yolo-datasets-ea96836a5730",
+    },
+    {
+      title: "Finetuned Mistral-7b-instruct-v0.3",
+      description:
+        "A fine-tuned Mistral-7B-Instruct-v0.3 model capable of generating opinion-style text in the distinctive writing style of Pakistani diplomat, journalist, and political scientist, Maleeha Lodhi.",
+      tech: ["Mistral-7B", "LLM", "Fine-tuning", "PEFT", "LoRA", "Python", "Hugging Face"],
+      github: "https://github.com/AbdullahUsama/mistral-7b-finetune", // Hugging Face link used as primary link
+      demo: "https://huggingface.co/abdullah1027/mistral-7b-instruct-finetuned-maleeha-lodhi-style", // Link to the 'Uses' section on HF for more details
     },
     {
       title: "Football Video Analysis",
@@ -112,14 +120,14 @@ export default function Portfolio() {
 
   ]
 
-  const skills = [
-    { category: "Programming", items: ["JavaScript", "Python", "C++", "SQL"] },
-    { category: "Frontend", items: ["React.js", "Next.js", "Tailwind CSS", "TypeScript"] },
-    { category: "Backend", items: ["Node.js", "Express.js", "FastAPI", "RESTful APIs"] },
-    { category: "AI/ML", items: ["TensorFlow", "OpenCV", "YOLO", "Computer Vision"] },
-    { category: "Databases", items: ["MongoDB", "MySQL", "PostgreSQL"] },
-    { category: "Cloud & Tools", items: ["Docker", "Git", "Vercel", "Google Cloud"] },
-  ]
+const skills = [
+  { category: "Programming Languages", items: ["JavaScript", "Python", "C++", "SQL"] },
+  { category: "Web Development", items: ["React.js", "Next.js", "Tailwind CSS", "TypeScript","Node.js", "Express.js", "FastAPI", "RESTful APIs"] },
+  { category: "AI/ML & Computer Vision", items: ["TensorFlow", "OpenCV", "YOLO", "MediaPipe", "LangChain", "LangSmith"] },
+  { category: "Databases", items: ["MongoDB", "MySQL", "PostgreSQL"] },
+  { category: "Cloud & Deployment", items: ["Docker", "Vercel", "Render", "Google Cloud"] },
+  { category: "Tools & Platforms", items: ["Git", "GitHub", "Clerk.com", "Stripe", "Pycaw", "React-i18n"] },
+];
 
   return (
     <div className={styles.container}>
@@ -329,42 +337,42 @@ export default function Portfolio() {
 
           <div className={styles.projectsGrid}>
             {projects.map((project, index) => (
-  <div key={index} className={styles.projectCard}>
-    <div className={styles.projectHeader}>
-      <h3 className={styles.projectTitle}>{project.title}</h3>
-      <div className={styles.projectLinks}>
-       <a
-  href={project.github}
-  className={styles.projectLink}
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Github size={16} />
-</a>
-{project.demo && (
-  <a
-    href={project.demo}
-    className={styles.projectLink}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <ExternalLink size={16} />
-  </a>
-)}
-      </div>
-    </div>
+            <div key={index} className={styles.projectCard}>
+              <div className={styles.projectHeader}>
+                <h3 className={styles.projectTitle}>{project.title}</h3>
+                <div className={styles.projectLinks}>
+                <a
+                  href={project.github}
+                  className={styles.projectLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+            <Github size={16} />
+          </a>
+          {project.demo && (
+            <a
+              href={project.demo}
+              className={styles.projectLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink size={16} />
+            </a>
+          )}
+                </div>
+              </div>
 
-    <p className={styles.projectDescription}>{project.description}</p>
+              <p className={styles.projectDescription}>{project.description}</p>
 
-    <div className={styles.projectTech}>
-      {project.tech.map((tech, techIndex) => (
-        <span key={techIndex} className={styles.techTag}>
-          {tech}
-        </span>
-      ))}
-    </div>
-  </div>
-))}
+              <div className={styles.projectTech}>
+                {project.tech.map((tech, techIndex) => (
+                  <span key={techIndex} className={styles.techTag}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
           </div>
         </div>
       </section>
