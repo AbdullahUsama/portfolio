@@ -240,7 +240,7 @@ const skills = [
 
             <div className={styles.aboutDescription}>
               <p>
-                I'm a third-year Software Engineering student at the National University of Sciences and Technology
+                I'm a final-year Software Engineering student at the National University of Sciences and Technology
                 (NUST), with a deep fascination for artificial intelligence and its practical applications.
               </p>
               <p>
