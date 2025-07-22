@@ -241,12 +241,12 @@ const skills = [
             <div className={styles.aboutDescription}>
               <p>
                 I'm a final-year Software Engineering student at the National University of Sciences and Technology
-                (NUST), with a deep fascination for artificial intelligence and its practical applications.
+                (NUST), with a experience in AI Agents, Automations and Web Development.
               </p>
               <p>
-                My work spans from computer vision research to full-stack development, always with an emphasis on
-                creating meaningful solutions that bridge the gap between cutting-edge technology and real-world
-                problems.
+                I have worked on fine-tuning Large Language Models (LLMs) and Vision-Language Models (VLMs), 
+                developing intelligent AI agents, creating automation solutions, and building scalable web applications. 
+                I'm passionate about using cutting-edge AI technologies to solve real life problems.
               </p>
             </div>
           </div>
