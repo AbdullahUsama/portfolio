@@ -123,7 +123,7 @@ export default function Portfolio() {
 const skills = [
   { category: "Programming Languages", items: ["JavaScript", "Python", "C++", "SQL"] },
   { category: "Web Development", items: ["React.js", "Next.js", "Tailwind CSS", "TypeScript","Node.js", "Express.js", "FastAPI", "RESTful APIs"] },
-  { category: "AI/ML & Computer Vision", items: ["TensorFlow", "OpenCV", "YOLO", "MediaPipe", "LangChain", "LangSmith"] },
+  { category: "AI/ML & Computer Vision", items: ["TensorFlow","PyTorch", "OpenCV", "YOLO", "MediaPipe", "LangChain", "LangSmith"] },
   { category: "Databases", items: ["MongoDB", "MySQL", "PostgreSQL"] },
   { category: "Cloud & Deployment", items: ["Docker", "Vercel", "Render", "Google Cloud"] },
   { category: "Tools & Platforms", items: ["Git", "GitHub", "Clerk.com", "Stripe", "Pycaw", "React-i18n"] },
@@ -155,41 +155,6 @@ const skills = [
         </div>
       </nav>
       
-      {/* Hero Section
-      <section id="hero" className={styles.hero}>
-        <TwinklingStars darkMode={darkMode} />
-        <BackgroundPaths />
-  <div className={styles.heroContentFlex}>
-    <div className={styles.heroImageWrapper}>
-      <img
-        src="me.jpg" // Place your image in the public folder as 'me.jpg'
-        alt="Abdullah Usama"
-        width={600}    // required
-        height={600} 
-        className={styles.heroImage}
-      />
-    </div>
-    <div className={styles.heroTextBlock}>
-      <div className={styles.heroText}>
-        <h1 className={styles.heroTitle}>Abdullah Usama</h1>
-        <div className={styles.heroDivider} />
-        <p className={styles.heroSubtitle}>Software Engineering Student & ML/AI Engineer</p>
-      </div>
-      <div className={styles.heroDescription}>
-        <p>
-          Passionate about machine learning, computer vision, and building scalable software solutions. Currently
-          exploring AI Agents and Automation.
-        </p>
-      </div>
-      <div className={styles.heroActions}>
-        <button onClick={() => scrollToSection("contact")} className={styles.ctaButton}>
-          <span>Get In Touch</span>
-          <ArrowRight size={16} />
-        </button>
-      </div>
-    </div>
-  </div>
-</section> */}
 {/* Hero Section */}
       <section id="hero" className={styles.hero}>
         <TwinklingStars darkMode={darkMode} />
