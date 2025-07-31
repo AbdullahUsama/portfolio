@@ -816,3 +816,30 @@
   background: var(--bg-secondary, #181818); /* Optional: match your theme */
   margin-bottom: 2rem;
 }
+
+/* Phone card specific styles */
+.phoneCard {
+  position: relative;
+  user-select: none;
+}
+
+.phoneCard:hover {
+  cursor: pointer;
+}
+
+.copyIcon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: var(--bg-tertiary, rgba(255, 255, 255, 0.1));
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyIcon:hover {
+  background-color: var(--bg-tertiary-hover, rgba(255, 255, 255, 0.2));
+}

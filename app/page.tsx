@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Moon, Sun, Mail, Phone, Github, Linkedin, ExternalLink, ArrowRight, Download } from "lucide-react"
+import { Moon, Sun, Mail, Phone, Github, Linkedin, ExternalLink, ArrowRight, Download, Copy, Check } from "lucide-react"
 import styles from "./portfolio.module.css"
 import Image from "next/image";
 import BackgroundPaths from "./components/BackgroundPaths";
@@ -13,6 +13,7 @@ import CursorFollower from "./components/CursorFollower"
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(true)
   const [activeSection, setActiveSection] = useState("hero")
+  const [phoneCopied, setPhoneCopied] = useState(false)
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light")
@@ -50,6 +51,17 @@ export default function Portfolio() {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
+  }
+
+  const copyPhoneNumber = async () => {
+    const phoneNumber = "03088404523"
+    try {
+      await navigator.clipboard.writeText(phoneNumber)
+      setPhoneCopied(true)
+      setTimeout(() => setPhoneCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy phone number: ', err)
+    }
   }
 
   const projects = [
@@ -382,10 +394,17 @@ const skills = [
               <span>Email</span>
             </a>
 
-            <a href="tel:03088404523" className={styles.contactCard}>
+            <div 
+              className={`${styles.contactCard} ${styles.phoneCard}`} 
+              onClick={copyPhoneNumber}
+              style={{ cursor: 'pointer', position: 'relative' }}
+            >
               <Phone size={24} />
               <span>Phone - 03088404523</span>
-            </a>
+              <div className={styles.copyIcon}>
+                {phoneCopied ? <Check size={16} /> : <Copy size={16} />}
+              </div>
+            </div>
 
             <a href="https://www.linkedin.com/in/abdullahusama/" className={styles.contactCard}>
               <Linkedin size={24} />
