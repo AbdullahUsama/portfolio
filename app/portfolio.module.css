@@ -586,10 +586,12 @@
   flex-direction: column;
   gap: 1.5rem;
   transition: transform 0.2s ease;
-  border: 1px solid var(--border-color, #333); /* Thin border, customizable color */
-  border-radius: 8px; /* Optional: rounded corners */
+  border: none; /* Remove border since GlareHover handles it */
+  border-radius: 0; /* Remove border-radius since GlareHover handles it */
   box-sizing: border-box;
   padding: 2rem;
+  background: transparent; /* Remove background since GlareHover handles it */
+  width: 100%;
 }
 
 .projectCard:hover {
@@ -809,12 +811,14 @@
 /* Add thin border for education and focus areas */
 .educationCard,
 .focusAreaCard {
-  border: 1px solid var(--border-color, #333);
-  border-radius: 8px;
+  /* Remove border and background since GlareHover handles these */
+  border: none;
+  border-radius: 0;
   box-sizing: border-box;
   padding: 2rem;
-  background: var(--bg-secondary, #181818); /* Optional: match your theme */
+  background: transparent;
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 /* Phone card specific styles */

@@ -5,8 +5,10 @@ import { Moon, Sun, Mail, Phone, Github, Linkedin, ExternalLink, ArrowRight, Dow
 import styles from "./portfolio.module.css"
 import Image from "next/image";
 import BackgroundPaths from "./components/BackgroundPaths";
-import TwinklingStars from "./components/TwinklingStars";
+import Galaxy from "./components/Galaxy";
+import Threads from "./components/Threads";
 import CursorFollower from "./components/CursorFollower"
+import GlareHover from "./components/GlareHover";
 // import { Download } from ""; // Import Download icon
 
 
@@ -169,7 +171,29 @@ const skills = [
       
 {/* Hero Section */}
       <section id="hero" className={styles.hero}>
-        <TwinklingStars darkMode={darkMode} />
+        {darkMode && (
+          <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, zIndex: 0 }}>
+            <Galaxy 
+              mouseRepulsion={true}
+              mouseInteraction={true}
+              density={2}
+              glowIntensity={0.2}
+              saturation={0.0}
+              hueShift={0}
+              starSpeed={0.1}
+            />
+          </div>
+        )}
+        {!darkMode && (
+          <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, zIndex: 0 }}>
+            <Threads
+              color={[0.2, 0.7, 1]}
+              amplitude={2}
+              distance={0.6}
+              enableMouseInteraction={true}
+            />
+          </div>
+        )}
         <BackgroundPaths />
   <div className={styles.heroContentFlex}>
     <div className={styles.heroImageWrapper}>
@@ -229,23 +253,53 @@ const skills = [
           </div>
 
           <div className={styles.aboutDetails}>
-            <div className={styles.educationCard}>
-              <h3 className={styles.detailTitle}>Education</h3>
-              <div className={styles.detailContent}>
-                <p className={styles.detailMain}>Bachelor of Software Engineering</p>
-                <p className={styles.detailSub}>National University of Sciences and Technology (NUST)</p>
-                <p className={styles.detailSmall}>School of Electrical Engineering and Computer Science (SEECS)</p>
+            <GlareHover
+              width="100%"
+              height="auto"
+              background="var(--bg-secondary, #181818)"
+              borderRadius="8px"
+              borderColor="var(--border-color, #333)"
+              glareColor="#ffffff"
+              glareOpacity={0.1}
+              glareAngle={-30}
+              glareSize={300}
+              transitionDuration={800}
+              playOnce={false}
+              style={{ padding: 0, display: 'block' }}
+            >
+              <div className={styles.educationCard}>
+                <h3 className={styles.detailTitle}>Education</h3>
+                <div className={styles.detailContent}>
+                  <p className={styles.detailMain}>Bachelor of Software Engineering</p>
+                  <p className={styles.detailSub}>National University of Sciences and Technology (NUST)</p>
+                  <p className={styles.detailSmall}>School of Electrical Engineering and Computer Science (SEECS)</p>
+                </div>
               </div>
-            </div>
+            </GlareHover>
 
-            <div className={styles.focusAreaCard}>
-              <h3 className={styles.detailTitle}>Focus Areas</h3>
-              <div className={styles.detailContent}>
-                <p>Machine Learning & Computer Vision</p>
-                <p>Full-Stack Web Development</p>
-                <p>AI-Powered Applications</p>
+            <GlareHover
+              width="100%"
+              height="auto"
+              background="var(--bg-secondary, #181818)"
+              borderRadius="8px"
+              borderColor="var(--border-color, #333)"
+              glareColor="#ffffff"
+              glareOpacity={0.1}
+              glareAngle={-30}
+              glareSize={300}
+              transitionDuration={800}
+              playOnce={false}
+              style={{ padding: 0, display: 'block' }}
+            >
+              <div className={styles.focusAreaCard}>
+                <h3 className={styles.detailTitle}>Focus Areas</h3>
+                <div className={styles.detailContent}>
+                  <p>Machine Learning & Computer Vision</p>
+                  <p>Full-Stack Web Development</p>
+                  <p>AI-Powered Applications</p>
+                </div>
               </div>
-            </div>
+            </GlareHover>
           </div>
         </div>
       </section>
