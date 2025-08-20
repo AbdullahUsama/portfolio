@@ -213,8 +213,8 @@ const skills = [
       </div>
       <div className={styles.heroDescription}>
         <p>
-          Passionate about machine learning, computer vision, and building scalable software solutions. Currently
-          exploring AI Agents and Automation.
+          Passionate about AI Agents, Automation, computer vision, and building scalable software solutions. Looking forward to
+          collaborate and expand my expertise. 
         </p>
       </div>
       <div className={styles.heroActions}>
