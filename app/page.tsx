@@ -84,7 +84,7 @@ export default function Portfolio() {
       demo: "https://medium.com/@ausama.bese22seecs/fixing-loose-bounding-boxes-a-sam-powered-approach-for-yolo-datasets-ea96836a5730",
     },
     {
-      title: "Finetuned Mistral-7b-instruct-v0.3",
+      title: "Finetuned Mistral-7b",
       description:
         "A fine-tuned Mistral-7B-Instruct-v0.3 model capable of generating opinion-style text in the distinctive writing style of Pakistani diplomat, journalist, and political scientist, Maleeha Lodhi.",
       tech: ["Mistral-7B", "LLM", "Fine-tuning", "PEFT", "LoRA", "Python", "Hugging Face"],
