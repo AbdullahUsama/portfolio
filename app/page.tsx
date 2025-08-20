@@ -271,7 +271,7 @@ const skills = [
                 <h3 className={styles.detailTitle}>Education</h3>
                 <div className={styles.detailContent}>
                   <p className={styles.detailMain}>Bachelor of Software Engineering</p>
-                  <p className={styles.detailSub}>National University of Sciences and Technology (NUST)</p>
+                  <p className={styles.detailSub}>National University of Sciences and Technology (NUST), H-12, Islamabad</p>
                   <p className={styles.detailSmall}>School of Electrical Engineering and Computer Science (SEECS)</p>
                 </div>
               </div>
