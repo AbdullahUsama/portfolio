@@ -76,6 +76,14 @@ export default function Portfolio() {
       demo: "https://dawn-ai-frontend.vercel.app/",
     },
     {
+  title: "Pakistan Penal Code RAG Chatbot",
+  description:
+    "A sophisticated Retrieval-Augmented Generation (RAG) chatbot for the Pakistan Penal Code featuring hybrid chunking, vector embeddings, and AI-powered legal assistance. Combines Weaviate vector database, Cohere embeddings, and Gemini AI for accurate legal information retrieval and natural language responses.",
+  tech: ["RAG", "Weaviate", "Cohere", "Gemini AI", "Streamlit", "Python", "Vector Database"],
+  github: "https://github.com/AbdullahUsama/Pakistan-Penal-Code-RAG-Chatbot",
+  demo: "https://pakistan-penal-code-rag-chatbot.streamlit.app/",
+},
+    {
       title: "Bounding Box Refinement Pipeline",
       description:
         "Pipeline to make YOLO bounding boxes more precise and tight around the target objects. Making the data more precise and improving localization.",
