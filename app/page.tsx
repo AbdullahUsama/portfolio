@@ -92,7 +92,7 @@ export default function Portfolio() {
       demo: "https://medium.com/@ausama.bese22seecs/fixing-loose-bounding-boxes-a-sam-powered-approach-for-yolo-datasets-ea96836a5730",
     },
     {
-      title: "Finetuned Mistral-7b-instruct-v0.3",
+      title: "Finetuned Mistral-7b",
       description:
         "A fine-tuned Mistral-7B-Instruct-v0.3 model capable of generating opinion-style text in the distinctive writing style of Pakistani diplomat, journalist, and political scientist, Maleeha Lodhi.",
       tech: ["Mistral-7B", "LLM", "Fine-tuning", "PEFT", "LoRA", "Python", "Hugging Face"],
@@ -221,8 +221,8 @@ const skills = [
       </div>
       <div className={styles.heroDescription}>
         <p>
-          Passionate about machine learning, computer vision, and building scalable software solutions. Currently
-          exploring AI Agents and Automation.
+          Passionate about AI Agents, Automation, computer vision, and building scalable software solutions. Looking forward to
+          collaborate and expand my expertise. 
         </p>
       </div>
       <div className={styles.heroActions}>
@@ -279,7 +279,7 @@ const skills = [
                 <h3 className={styles.detailTitle}>Education</h3>
                 <div className={styles.detailContent}>
                   <p className={styles.detailMain}>Bachelor of Software Engineering</p>
-                  <p className={styles.detailSub}>National University of Sciences and Technology (NUST)</p>
+                  <p className={styles.detailSub}>National University of Sciences and Technology (NUST), H-12, Islamabad</p>
                   <p className={styles.detailSmall}>School of Electrical Engineering and Computer Science (SEECS)</p>
                 </div>
               </div>
