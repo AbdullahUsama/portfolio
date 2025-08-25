@@ -319,6 +319,23 @@ const skills = [
     <div className={styles.experienceList}>
       <div className={styles.experienceItem}>
         <div className={styles.experienceDate}>
+          <p>May 2025 – Present</p>
+        </div>
+        <div className={styles.experienceDetails}>
+          <h3 className={styles.experienceTitle}>Freelancer</h3>
+          <p className={styles.experienceCompany}>Fiverr</p>
+          <ul className={styles.experienceDescription}>
+            <li> - Developed chatbots using RAG architecture for enhanced query responses</li>
+            <li> - Built intelligent AI agents for automated customer solutions and workflows</li>
+            <li> - Implemented LLM-powered systems for various client AI automation needs</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={styles.experienceDivider} />
+
+      <div className={styles.experienceItem}>
+        <div className={styles.experienceDate}>
           <p>June 2025 – Present</p>
         </div>
         <div className={styles.experienceDetails}>
