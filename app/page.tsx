@@ -105,7 +105,6 @@ export default function Portfolio() {
         "Comprehensive football match analysis system with player tracking, distance estimation, and possession analysis.",
       tech: ["YOLO", "OpenCV", "SORT Tracking", "Python"],
       github: "https://github.com/AbdullahUsama/football-video-analysis",
-      // demo: "#",
     },
     {
       title: "Plant E-Commerce App",
