@@ -87,7 +87,7 @@ export default function Portfolio() {
       title: "Bounding Box Refinement Pipeline",
       description:
         "Pipeline to make YOLO bounding boxes more precise and tight around the target objects. Making the data more precise and improving localization.",
-      tech: ["YOLO", "SAM", "Computer Vision", "Python"],
+      tech: ["YOLO", "SAM", "Computer Vision", "Python", "Masking"],
       github: "https://github.com/AbdullahUsama/fixing-loose-bounding-boxes",
       demo: "https://medium.com/@ausama.bese22seecs/fixing-loose-bounding-boxes-a-sam-powered-approach-for-yolo-datasets-ea96836a5730",
     },
@@ -96,8 +96,8 @@ export default function Portfolio() {
       description:
         "A fine-tuned Mistral-7B-Instruct-v0.3 model capable of generating opinion-style text in the distinctive writing style of Pakistani diplomat, journalist, and political scientist, Maleeha Lodhi.",
       tech: ["Mistral-7B", "LLM", "Fine-tuning", "PEFT", "LoRA", "Python", "Hugging Face"],
-      github: "https://github.com/AbdullahUsama/mistral-7b-finetune", // Hugging Face link used as primary link
-      demo: "https://huggingface.co/abdullah1027/mistral-7b-instruct-finetuned-maleeha-lodhi-style", // Link to the 'Uses' section on HF for more details
+      github: "https://github.com/AbdullahUsama/mistral-7b-finetune", 
+      demo: "https://huggingface.co/abdullah1027/mistral-7b-instruct-finetuned-maleeha-lodhi-style", 
     },
     {
       title: "Football Video Analysis",
