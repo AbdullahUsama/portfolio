@@ -145,7 +145,7 @@ const skills = [
   { category: "Programming Languages", items: ["JavaScript", "Python", "C++", "SQL"] },
   { category: "Web Development", items: ["React.js", "Next.js", "Tailwind CSS", "TypeScript","Node.js", "Express.js", "FastAPI", "RESTful APIs"] },
   { category: "AI/ML & Computer Vision", items: ["TensorFlow","PyTorch", "OpenCV", "YOLO", "MediaPipe", "LangChain", "LangSmith"] },
-  { category: "Databases", items: ["MongoDB", "MySQL", "PostgreSQL"] },
+  { category: "Databases", items: ["MongoDB", "MySQL", "PostgreSQL", "Weaviate", "ChromaDB", "Pinecone"] },
   { category: "Cloud & Deployment", items: ["Docker", "Vercel", "Render", "Google Cloud"] },
   { category: "Tools & Platforms", items: ["Git", "GitHub", "Clerk.com", "Stripe", "Pycaw", "React-i18n"] },
 ];
