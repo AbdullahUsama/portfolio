@@ -9,6 +9,7 @@ import Galaxy from "./components/Galaxy";
 import Threads from "./components/Threads";
 import CursorFollower from "./components/CursorFollower"
 import GlareHover from "./components/GlareHover";
+import SplitText from "./components/SplitText";
 // import { Download } from ""; // Import Download icon
 
 
@@ -202,39 +203,41 @@ const skills = [
           </div>
         )}
         <BackgroundPaths />
-  <div className={styles.heroContentFlex}>
-    <div className={styles.heroImageWrapper}>
-      <img
-        src="me.jpg" // Place your image in the public folder as 'me.jpg'
-        alt="Abdullah Usama"
-        width={600}    // required
-        height={600}
-        className={styles.heroImage}
+  <div className={styles.heroContentCentered} style={{ position: 'relative', zIndex: 10 }}>
+    <div className={styles.heroText}>
+      <SplitText
+        text="Abdullah Usama"
+        className={styles.heroTitle}
+        tag="h1"
+        delay={100}
+        duration={0.6}
+        ease="power3.out"
+        splitType="chars"
+        from={{ opacity: 0, y: 40 }}
+        to={{ opacity: 1, y: 0 }}
+        threshold={0.1}
+        rootMargin="-100px"
+        textAlign="center"
       />
+      <div className={styles.heroDivider} />
+      <p className={styles.heroSubtitle}>Software Engineering Student & ML/AI Engineer</p>
     </div>
-    <div className={styles.heroTextBlock}>
-      <div className={styles.heroText}>
-        <h1 className={styles.heroTitle}>Abdullah Usama</h1>
-        <div className={styles.heroDivider} />
-        <p className={styles.heroSubtitle}>Software Engineering Student & ML/AI Engineer</p>
-      </div>
-      <div className={styles.heroDescription}>
-        <p>
-          Passionate about AI Agents, Automation, computer vision, and building scalable software solutions. Looking forward to
-          collaborate and expand my expertise. 
-        </p>
-      </div>
-      <div className={styles.heroActions}>
-        <button onClick={() => scrollToSection("contact")} className={styles.ctaButton}>
-          <span>Get In Touch</span>
-          <ArrowRight size={16} />
-        </button>
-        {/* New Download CV Button */}
-        <a href="/Abdullah_Usama_CV.pdf" download className={styles.ctaButton}> {/* Assuming your CV is in the public folder as Abdullah_Usama_CV.pdf */}
-          <span>Download CV</span>
-          <Download size={16} />
-        </a>
-      </div>
+    <div className={styles.heroDescription}>
+      <p>
+        Passionate about AI Agents, Automation, computer vision, and building scalable software solutions. Looking forward to
+        collaborate and expand my expertise. 
+      </p>
+    </div>
+    <div className={styles.heroActions}>
+      <button onClick={() => scrollToSection("contact")} className={styles.ctaButton}>
+        <span>Get In Touch</span>
+        <ArrowRight size={16} />
+      </button>
+      {/* New Download CV Button */}
+      <a href="/Abdullah_Usama_CV.pdf" download className={styles.ctaButton}> {/* Assuming your CV is in the public folder as Abdullah_Usama_CV.pdf */}
+        <span>Download CV</span>
+        <Download size={16} />
+      </a>
     </div>
   </div>
 </section>
