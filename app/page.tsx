@@ -6,6 +6,7 @@ import styles from "./portfolio.module.css"
 import Image from "next/image";
 import BackgroundPaths from "./components/BackgroundPaths";
 import Galaxy from "./components/Galaxy";
+import Aurora from './components/ether';
 import Threads from "./components/Threads";
 import CursorFollower from "./components/CursorFollower"
 import GlareHover from "./components/GlareHover";
@@ -181,14 +182,11 @@ const skills = [
       <section id="hero" className={styles.hero}>
         {darkMode && (
           <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, zIndex: 0 }}>
-            <Galaxy 
-              mouseRepulsion={true}
-              mouseInteraction={true}
-              density={2}
-              glowIntensity={0.2}
-              saturation={0.0}
-              hueShift={0}
-              starSpeed={0.1}
+            <Aurora
+              colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
+              blend={0.8}
+              amplitude={1.0}
+              speed={0.5}
             />
           </div>
         )}
