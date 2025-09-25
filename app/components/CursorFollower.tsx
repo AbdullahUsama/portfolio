@@ -14,9 +14,9 @@ export default function CursorFollower() {
   const [showCursor, setShowCursor] = useState(true)
 
   // Colors
-  const dotColor = "rgba(100, 200, 255, 1)"
-  const dotShadow = "0 0 6px rgba(100, 200, 255, 0.8)"
-  const circleBorder = "2px solid rgba(100, 200, 255, 0.8)"
+  const dotColor = "rgba(255, 255, 255, 1)"
+  const dotShadow = "0 0 6px rgba(255, 255, 255, 0.8)"
+  const circleBorder = "2px solid rgba(255, 255, 255, 0.8)"
   const circleShadow = "0 0 8px rgba(100, 200, 255, 0.6)"
 
   useEffect(() => {
@@ -94,7 +94,7 @@ export default function CursorFollower() {
 
   if (!showCursor) return null
 
-  const dotSize = clicked ? 40 : hovering ? 22 : 14
+  const dotSize = clicked ? 40 : hovering ? 22 : 20
 
   return (
     <>
@@ -124,8 +124,8 @@ export default function CursorFollower() {
           position: "fixed",
           top: 0,
           left: 0,
-          width: 40,
-          height: 40,
+          width: 60,
+          height: 60,
           borderRadius: "50%",
           border: circleBorder,
           boxShadow: circleShadow,

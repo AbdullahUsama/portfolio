@@ -219,15 +219,13 @@ const skills = [
         rootMargin="-100px"
         textAlign="center"
       />
-      <div className={styles.heroDivider} />
-      <p className={styles.heroSubtitle}>Software Engineering Student & ML/AI Engineer</p>
+      {/* <div className={styles.heroDivider} /> */}
+<p className={styles.heroSubtitle}>
+  Artificial Intelligence • Machine Learning • Deep Learning
+</p>
+
     </div>
-    <div className={styles.heroDescription}>
-      <p>
-        Passionate about AI Agents, Automation, computer vision, and building scalable software solutions. Looking forward to
-        collaborate and expand my expertise. 
-      </p>
-    </div>
+   
     <div className={styles.heroActions}>
       <button onClick={() => scrollToSection("contact")} className={styles.ctaButton}>
         <span>Get In Touch</span>

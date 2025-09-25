@@ -21,6 +21,7 @@
   min-height: 100vh;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  /* font-family: "Times New Roman", Times, serif; */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -47,6 +48,8 @@
   flex-direction: column;
   align-items: center;
   gap: 2.5rem;
+  font-family: "Times New Roman", Times, serif;
+
 }
 
 @media (min-width: 768px) {
@@ -99,6 +102,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Times New Roman", Times, serif;
+
 }
 
 @media (max-width: 600px) {
@@ -212,6 +217,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Times New Roman", Times, serif;
   padding-top: 6rem; /* or whatever height you want to offset for the navbar */
 
   /* overflow: hidden; */
@@ -246,6 +252,7 @@
 .heroTitle {
   font-size: 6rem;
   font-weight: 400;
+  font-family: "Times New Roman", Times, serif;
   letter-spacing: -0.025em;
   margin: 0 0 1.5rem 0;
   z-index: 10;
@@ -354,7 +361,7 @@
   background: #111;
   color: #fff;
   border: none;
-  border-radius: 0.6rem;
+  border-radius: 0.2rem;
   padding: 0.8rem 1.5rem; /* Default padding for larger screens */
   font-size: 1.1rem;      /* Default font size for larger screens */
   font-weight: 600;
