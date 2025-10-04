@@ -94,7 +94,7 @@ export default function Portfolio() {
       demo: "https://medium.com/@ausama.bese22seecs/fixing-loose-bounding-boxes-a-sam-powered-approach-for-yolo-datasets-ea96836a5730",
     },
     {
-      title: "Finetuned Mistral-7b",
+      title: "Finetuned Mistral-7b (25+ Downloads on Hugging Face)",
       description:
         "A fine-tuned Mistral-7B-Instruct-v0.3 model capable of generating opinion-style text in the distinctive writing style of Pakistani diplomat, journalist, and political scientist, Maleeha Lodhi.",
       tech: ["Mistral-7B", "LLM", "Fine-tuning", "PEFT", "LoRA", "Python", "Hugging Face"],
@@ -352,7 +352,7 @@ const skills = [
 
       <div className={styles.experienceItem}>
         <div className={styles.experienceDate}>
-          <p>April 2025 – May 2025</p>
+          <p>April 2025 – June 2025</p>
         </div>
         <div className={styles.experienceDetails}>
           <h3 className={styles.experienceTitle}>ML Intern</h3>
