@@ -220,7 +220,8 @@ const skills = [
       />
       {/* <div className={styles.heroDivider} /> */}
 <p className={styles.heroSubtitle}>
-  Artificial Intelligence • Machine Learning • Deep Learning
+  <span className={styles.heroSubtitleDesktop}>Passionate Software Engineer expert in Machine Learning, Deep Learning, Computer Vision and LLMs</span>
+  <span className={styles.heroSubtitleMobile}>AI Engineer • ML • DL<br/>Computer Vision</span>
 </p>
 
     </div>
