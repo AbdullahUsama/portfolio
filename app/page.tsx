@@ -14,6 +14,155 @@ import SplitText from "./components/SplitText";
 // import { Download } from ""; // Import Download icon
 
 
+// Structured Data for Rich Snippets
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Abdullah Usama",
+    "jobTitle": "AI Engineer & Software Developer",
+    "description": "Final-year Software Engineering student at NUST specializing in AI Agents, Machine Learning, Computer Vision, and Full-Stack Development",
+    "url": "https://abdullahusama.site",
+    "image": "https://abdullahusama.site/me.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/abdullahusama/",
+      "https://github.com/AbdullahUsama",
+      "https://huggingface.co/abdullah1027"
+    ],
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "National University of Sciences and Technology (NUST)",
+      "department": "School of Electrical Engineering and Computer Science (SEECS)",
+      "degree": "Bachelor of Software Engineering"
+    },
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "AI Engineer",
+      "occupationLocation": {
+        "@type": "Place",
+        "name": "Pakistan"
+      },
+      "skills": ["Machine Learning", "Computer Vision", "AI Agents", "Deep Learning", "Full-Stack Development", "Python", "React", "Next.js"]
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+92-308-8404523",
+      "contactType": "professional",
+      "email": "ausama.bese22seecs@seecs.edu.pk"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://abdullahusama.site#website",
+    "url": "https://abdullahusama.site",
+    "name": "Abdullah Usama Portfolio",
+    "description": "Professional portfolio showcasing AI engineering projects and software development work",
+    "author": {
+      "@type": "Person",
+      "name": "Abdullah Usama"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://abdullahusama.site#{search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Portfolio Sections",
+      "itemListElement": [
+        {
+          "@type": "SiteNavigationElement",
+          "position": 1,
+          "name": "About Abdullah Usama",
+          "description": "Learn about Abdullah's background in AI and software engineering",
+          "url": "https://abdullahusama.site#about"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 2,
+          "name": "Professional Experience",
+          "description": "Abdullah's work experience in AI, ML, and software development",
+          "url": "https://abdullahusama.site#experience"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 3,
+          "name": "AI & ML Projects",
+          "description": "Showcase of AI agents, machine learning, and computer vision projects",
+          "url": "https://abdullahusama.site#projects"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 4,
+          "name": "Technical Skills",
+          "description": "Programming languages, frameworks, and technologies expertise",
+          "url": "https://abdullahusama.site#skills"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 5,
+          "name": "Contact Abdullah",
+          "description": "Get in touch for collaborations and opportunities",
+          "url": "https://abdullahusama.site#contact"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 6,
+          "name": "Download CV",
+          "description": "Download Abdullah Usama's curriculum vitae",
+          "url": "https://abdullahusama.site/Abdullah_Usama_CV.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://abdullahusama.site"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About",
+        "item": "https://abdullahusama.site#about"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Experience",
+        "item": "https://abdullahusama.site#experience"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Projects",
+        "item": "https://abdullahusama.site#projects"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Skills",
+        "item": "https://abdullahusama.site#skills"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "Contact",
+        "item": "https://abdullahusama.site#contact"
+      }
+    ]
+  }
+];
+
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(true)
   const [activeSection, setActiveSection] = useState("hero")
@@ -153,6 +302,16 @@ const skills = [
 ];
 
   return (
+    <>
+      {/* Structured Data JSON-LD */}
+      {structuredData.map((schema, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+      
     <div className={styles.container}>
       <CursorFollower />
       {/* Navigation */}
@@ -506,5 +665,6 @@ const skills = [
         </div>
       </footer>
     </div>
+    </>
   )
 }

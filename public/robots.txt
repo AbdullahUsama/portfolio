@@ -1,0 +1,33 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Allow: /#about
+
+# *
+User-agent: *
+Allow: /#experience
+
+# *
+User-agent: *
+Allow: /#projects
+
+# *
+User-agent: *
+Allow: /#skills
+
+# *
+User-agent: *
+Allow: /#contact
+
+# *
+User-agent: *
+Allow: /Abdullah_Usama_CV.pdf
+
+# Host
+Host: https://abdullahusama.site
+
+# Sitemaps
+Sitemap: https://abdullahusama.site/sitemap.xml
