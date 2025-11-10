@@ -478,6 +478,23 @@ const skills = [
     <div className={styles.experienceList}>
       <div className={styles.experienceItem}>
         <div className={styles.experienceDate}>
+          <p>October 2025 – Present</p>
+        </div>
+        <div className={styles.experienceDetails}>
+          <h3 className={styles.experienceTitle}>LLM and AI Engineer</h3>
+          <p className={styles.experienceCompany}>Rapids AI</p>
+          <ul className={styles.experienceDescription}>
+            <li> - Designing and implementing autonomous AI agents for complex task automation and decision-making</li>
+            <li> - Building intelligent automation workflows using LLMs to streamline business processes and reduce manual intervention</li>
+            <li> - Developing multi-agent systems with tool integration and orchestration capabilities</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={styles.experienceDivider} />
+
+      <div className={styles.experienceItem}>
+        <div className={styles.experienceDate}>
           <p>May 2025 – Present</p>
         </div>
         <div className={styles.experienceDetails}>
@@ -495,7 +512,7 @@ const skills = [
 
       <div className={styles.experienceItem}>
         <div className={styles.experienceDate}>
-          <p>June 2025 – Present</p>
+          <p>June 2025 – Sept 2025</p>
         </div>
         <div className={styles.experienceDetails}>
           <h3 className={styles.experienceTitle}>AI Intern</h3>
