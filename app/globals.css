@@ -6,12 +6,12 @@
 }
 
 :root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
+  --bg-primary: #f5f1e8;
+  --bg-secondary: #ebe5d9;
   --text-primary: #111827;
   --text-secondary: #6b7280;
   --text-muted: #9ca3af;
-  --border-color: #e5e7eb;
+  --border-color: #d4cbb8;
   --border-hover: #9ca3af;
 }
 
