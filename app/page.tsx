@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import dynamic from "next/dynamic"
 import { Moon, Sun, Mail, Phone, Github, Linkedin, ExternalLink, ArrowRight, Download, Copy, Check } from "lucide-react"
 import styles from "./portfolio.module.css"
 import Image from "next/image";
@@ -8,10 +9,11 @@ import BackgroundPaths from "./components/BackgroundPaths";
 import Galaxy from "./components/Galaxy";
 import Aurora from './components/ether';
 import Threads from "./components/Threads";
-import CursorFollower from "./components/CursorFollower"
 import GlareHover from "./components/GlareHover";
 import SplitText from "./components/SplitText";
 // import { Download } from ""; // Import Download icon
+
+const CursorFollower = dynamic(() => import("./components/CursorFollower"), { ssr: false })
 
 
 // Structured Data for Rich Snippets

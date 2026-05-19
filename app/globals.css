@@ -2,7 +2,31 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  cursor:none
+}
+
+body.binary-cursor-enabled,
+body.binary-cursor-enabled *,
+body.binary-cursor-enabled *::before,
+body.binary-cursor-enabled *::after {
+  cursor: none !important;
+}
+
+@media (hover: none) {
+  body.binary-cursor-enabled,
+  body.binary-cursor-enabled *,
+  body.binary-cursor-enabled *::before,
+  body.binary-cursor-enabled *::after {
+    cursor: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.binary-cursor-enabled,
+  body.binary-cursor-enabled *,
+  body.binary-cursor-enabled *::before,
+  body.binary-cursor-enabled *::after {
+    cursor: auto !important;
+  }
 }
 
 :root {
