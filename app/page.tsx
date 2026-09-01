@@ -1,20 +1,25 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import dynamic from "next/dynamic"
-import { Moon, Sun, Mail, Phone, Github, Linkedin, ExternalLink, ArrowRight, Download, Copy, Check } from "lucide-react"
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion"
+import {
+  Moon,
+  Sun,
+  Mail,
+  Phone,
+  Github,
+  Linkedin,
+  ExternalLink,
+  ArrowUpRight,
+  ArrowDown,
+  Download,
+  Copy,
+  Check,
+} from "lucide-react"
 import styles from "./portfolio.module.css"
-import Image from "next/image";
-import BackgroundPaths from "./components/BackgroundPaths";
-import Galaxy from "./components/Galaxy";
-import Aurora from './components/ether';
-import Threads from "./components/Threads";
-import GlareHover from "./components/GlareHover";
-import SplitText from "./components/SplitText";
-// import { Download } from ""; // Import Download icon
 
 const CursorFollower = dynamic(() => import("./components/CursorFollower"), { ssr: false })
-
 
 // Structured Data for Rich Snippets
 const structuredData = [
@@ -63,112 +68,232 @@ const structuredData = [
     "author": {
       "@type": "Person",
       "name": "Abdullah Usama"
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://abdullahusama.site#{search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    },
-    "mainEntity": {
-      "@type": "ItemList",
-      "name": "Portfolio Sections",
-      "itemListElement": [
-        {
-          "@type": "SiteNavigationElement",
-          "position": 1,
-          "name": "About Abdullah Usama",
-          "description": "Learn about Abdullah's background in AI and software engineering",
-          "url": "https://abdullahusama.site#about"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 2,
-          "name": "Professional Experience",
-          "description": "Abdullah's work experience in AI, ML, and software development",
-          "url": "https://abdullahusama.site#experience"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 3,
-          "name": "AI & ML Projects",
-          "description": "Showcase of AI agents, machine learning, and computer vision projects",
-          "url": "https://abdullahusama.site#projects"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 4,
-          "name": "Technical Skills",
-          "description": "Programming languages, frameworks, and technologies expertise",
-          "url": "https://abdullahusama.site#skills"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 5,
-          "name": "Contact Abdullah",
-          "description": "Get in touch for collaborations and opportunities",
-          "url": "https://abdullahusama.site#contact"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 6,
-          "name": "Download CV",
-          "description": "Download Abdullah Usama's curriculum vitae",
-          "url": "https://abdullahusama.site/Abdullah_Usama_CV.pdf"
-        }
-      ]
     }
   },
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://abdullahusama.site"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "About",
-        "item": "https://abdullahusama.site#about"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Experience",
-        "item": "https://abdullahusama.site#experience"
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "name": "Projects",
-        "item": "https://abdullahusama.site#projects"
-      },
-      {
-        "@type": "ListItem",
-        "position": 5,
-        "name": "Skills",
-        "item": "https://abdullahusama.site#skills"
-      },
-      {
-        "@type": "ListItem",
-        "position": 6,
-        "name": "Contact",
-        "item": "https://abdullahusama.site#contact"
-      }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://abdullahusama.site" },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://abdullahusama.site#about" },
+      { "@type": "ListItem", "position": 3, "name": "Experience", "item": "https://abdullahusama.site#experience" },
+      { "@type": "ListItem", "position": 4, "name": "Projects", "item": "https://abdullahusama.site#projects" },
+      { "@type": "ListItem", "position": 5, "name": "Skills", "item": "https://abdullahusama.site#skills" },
+      { "@type": "ListItem", "position": 6, "name": "Contact", "item": "https://abdullahusama.site#contact" }
     ]
   }
 ];
+
+const projects = [
+  {
+    title: "News AI Agent",
+    description:
+      "An intelligent agent that helps students decode editorial and opinion pieces from DAWN, The Tribune, and ParadigmShift — topic search, article scraping, and key-information extraction in one assistant.",
+    tech: ["FastAPI", "LangChain", "Next.js", "Gemini 2.0"],
+    github: "https://github.com/AbdullahUsama/dawn-ai-agent",
+    demo: "https://dawn-ai-frontend.vercel.app/",
+    featured: true,
+    tag: "AI Agent",
+  },
+  {
+    title: "Pakistan Penal Code RAG Chatbot",
+    description:
+      "A Retrieval-Augmented Generation chatbot for the Pakistan Penal Code — hybrid chunking, Weaviate vector search, Cohere embeddings, and Gemini for accurate, natural-language legal answers.",
+    tech: ["RAG", "Weaviate", "Cohere", "Gemini", "Streamlit", "Python"],
+    github: "https://github.com/AbdullahUsama/Pakistan-Penal-Code-RAG-Chatbot",
+    demo: "https://pakistan-penal-code-rag-chatbot.streamlit.app/",
+    featured: true,
+    tag: "RAG System",
+  },
+  {
+    title: "Fine-tuned Mistral-7B",
+    description:
+      "Mistral-7B-Instruct fine-tuned with LoRA to write opinion pieces in the distinctive style of diplomat and political scientist Maleeha Lodhi. 50+ downloads on Hugging Face.",
+    tech: ["Mistral-7B", "PEFT", "LoRA", "Hugging Face"],
+    github: "https://github.com/AbdullahUsama/mistral-7b-finetune",
+    demo: "https://huggingface.co/abdullah1027/mistral-7b-instruct-finetuned-maleeha-lodhi-style",
+    featured: true,
+    tag: "LLM Fine-tuning",
+  },
+  {
+    title: "Bounding Box Refinement Pipeline",
+    description:
+      "A SAM-powered pipeline that tightens loose YOLO bounding boxes, sharpening localization quality across entire datasets.",
+    tech: ["YOLO", "SAM", "Computer Vision", "Python"],
+    github: "https://github.com/AbdullahUsama/fixing-loose-bounding-boxes",
+    demo: "https://medium.com/@ausama.bese22seecs/fixing-loose-bounding-boxes-a-sam-powered-approach-for-yolo-datasets-ea96836a5730",
+    tag: "Computer Vision",
+  },
+  {
+    title: "Transformer From Scratch",
+    description:
+      "The 'Attention Is All You Need' architecture rebuilt from zero in PyTorch — attention, positional encoding, multi-head mechanisms, encoder-decoder.",
+    tech: ["PyTorch", "NLP", "Deep Learning"],
+    github: "https://github.com/AbdullahUsama/transformer-from-scratch",
+    tag: "Deep Learning",
+  },
+  {
+    title: "Football Video Analysis",
+    description:
+      "Match analysis system with player tracking, distance estimation, and possession analysis from raw broadcast footage.",
+    tech: ["YOLO", "OpenCV", "SORT", "Python"],
+    github: "https://github.com/AbdullahUsama/football-video-analysis",
+    tag: "Computer Vision",
+  },
+  {
+    title: "Video-Stream App",
+    description:
+      "Cloud-native video streaming with a microservices backend, secure auth, and real-time media processing on Google Cloud.",
+    tech: ["React", "Cloud Run", "Firebase", "JWT"],
+    github: "https://github.com/AbdullahUsama/video-stream-app",
+    demo: "https://video-stream-app-delta.vercel.app/",
+    tag: "Cloud",
+  },
+  {
+    title: "Plant E-Commerce App",
+    description:
+      "Full-stack e-commerce platform with secure authentication, multilingual support, and Stripe payments.",
+    tech: ["MERN", "Stripe", "Clerk", "i18n"],
+    github: "https://github.com/AbdullahUsama/plant-ecommerce-app",
+    tag: "Full-Stack",
+  },
+  {
+    title: "Hand Gesture Volume Control",
+    description:
+      "Real-time hands-free volume control driven by dynamic hand gestures, with MediaPipe landmark detection and Pycaw audio integration.",
+    tech: ["MediaPipe", "OpenCV", "Pycaw"],
+    github: "https://github.com/AbdullahUsama/hand-volume-control",
+    tag: "Computer Vision",
+  },
+]
+
+const experience = [
+  {
+    date: "Oct 2025 — Present",
+    role: "LLM & AI Engineer",
+    company: "Rapids AI",
+    points: [
+      "Designing autonomous AI agents for complex task automation and decision-making",
+      "Building LLM-powered automation workflows that cut manual intervention",
+      "Developing multi-agent systems with tool integration and orchestration",
+    ],
+  },
+  {
+    date: "May 2025 — Present",
+    role: "Freelance AI Developer",
+    company: "Fiverr",
+    points: [
+      "Shipped RAG chatbots with enhanced query responses for client products",
+      "Built intelligent AI agents for automated customer solutions and workflows",
+    ],
+  },
+  {
+    date: "Jun 2025 — Sep 2025",
+    role: "AI Intern",
+    company: "Crimson Labs, SEECS",
+    points: [
+      "Fine-tuned LLMs and built AI chatbots for education",
+      "Developed RAG-based systems for learning",
+    ],
+  },
+  {
+    date: "Apr 2025 — Jun 2025",
+    role: "ML Intern",
+    company: "OneScreen Solutions · San Diego (Remote)",
+    points: [
+      "Worked with Vision Transformers (ViT-32) and VLMs like PaLI-Gemma",
+      "Achieved 7–10% higher mAP by reducing label noise and improving localization",
+      "Built an end-to-end pipeline fusing SAM pixel masks with YOLO annotations",
+    ],
+  },
+  {
+    date: "Jun 2024 — Aug 2024",
+    role: "Computer Vision Intern",
+    company: "MachVis Lab, SEECS",
+    points: [
+      "Engineered CV pipelines for real-time object detection and tracking",
+      "Implemented feature extraction with ORB and optical flow",
+      "Built real-time tracking with SORT and Kalman Filters",
+    ],
+  },
+]
+
+const skills = [
+  { category: "Languages", items: ["Python", "JavaScript", "TypeScript", "C++", "SQL"] },
+  { category: "AI / ML / CV", items: ["PyTorch", "TensorFlow", "LangChain", "LangSmith", "OpenCV", "YOLO", "MediaPipe"] },
+  { category: "Web", items: ["React", "Next.js", "Node.js", "Express", "FastAPI", "Tailwind CSS", "REST APIs"] },
+  { category: "Databases", items: ["PostgreSQL", "MongoDB", "MySQL", "Weaviate", "ChromaDB", "Pinecone"] },
+  { category: "Cloud & DevOps", items: ["Docker", "Google Cloud", "Vercel", "Render"] },
+  { category: "Tools", items: ["Git", "GitHub", "Clerk", "Stripe", "Hugging Face"] },
+]
+
+const marqueeItems = [
+  "AI Agents",
+  "RAG Systems",
+  "LLM Fine-tuning",
+  "Computer Vision",
+  "Multi-Agent Orchestration",
+  "Vision-Language Models",
+  "Full-Stack Development",
+  "Deep Learning",
+]
+
+const stats = [
+  { value: "05", label: "Roles & internships" },
+  { value: "09", label: "Projects shipped" },
+  { value: "50+", label: "Hugging Face downloads" },
+  { value: "7–10%", label: "mAP gain delivered" },
+]
+
+function Reveal({
+  children,
+  delay = 0,
+  className,
+}: {
+  children: React.ReactNode
+  delay?: number
+  className?: string
+}) {
+  const reduce = useReducedMotion()
+  return (
+    <motion.div
+      className={className}
+      initial={reduce ? false : { opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+function SectionHeading({ index, title }: { index: string; title: string }) {
+  return (
+    <Reveal>
+      <div className={styles.sectionHeading}>
+        <span className={styles.sectionIndex}>{index}</span>
+        <h2 className={styles.sectionTitle}>{title}</h2>
+        <span className={styles.sectionRule} />
+      </div>
+    </Reveal>
+  )
+}
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(true)
   const [activeSection, setActiveSection] = useState("hero")
   const [phoneCopied, setPhoneCopied] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const reduce = useReducedMotion()
+
+  const heroRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  })
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "24%"])
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0])
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light")
@@ -176,15 +301,14 @@ export default function Portfolio() {
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrolled(window.scrollY > 24)
       const sections = ["hero", "about", "experience", "projects", "skills", "contact"]
-      const scrollPosition = window.scrollY + 100
+      const scrollPosition = window.scrollY + 120
 
       for (const section of sections) {
         const element = document.getElementById(section)
         if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
-
+          const { offsetTop, offsetHeight } = element
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section)
             break
@@ -193,119 +317,41 @@ export default function Portfolio() {
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
   }
 
   const copyPhoneNumber = async () => {
-    const phoneNumber = "03088404523"
     try {
-      await navigator.clipboard.writeText(phoneNumber)
+      await navigator.clipboard.writeText("03088404523")
       setPhoneCopied(true)
       setTimeout(() => setPhoneCopied(false), 2000)
     } catch (err) {
-      console.error('Failed to copy phone number: ', err)
+      console.error("Failed to copy phone number: ", err)
     }
   }
 
-  const projects = [
-    {
-      title: "News AI Agent",
-      description:
-        "The Pakistan News AI Assistant is an intelligent agent designed to help students and aspirants understand editorial and opinion articles from DAWN (Editorial & Op-Ed), The Tribune (Editorial), and ParadigmShift (National & International Relations) newspapers. It provides various functionalities, including getting all the articles related to a certain topic, scraping articles, extracting key information. ",
-      tech: ["FastAPI", "LangChain", "Next.js", "Gemini 2.0"],
-      github: "https://github.com/AbdullahUsama/dawn-ai-agent",
-      demo: "https://dawn-ai-frontend.vercel.app/",
-    },
-    {
-      title: "Pakistan Penal Code RAG Chatbot",
-      description:
-        "A sophisticated Retrieval-Augmented Generation (RAG) chatbot for the Pakistan Penal Code featuring hybrid chunking, vector embeddings, and AI-powered legal assistance. Combines Weaviate vector database, Cohere embeddings, and Gemini AI for accurate legal information retrieval and natural language responses.",
-      tech: ["RAG", "Weaviate", "Cohere", "Gemini AI", "Streamlit", "Python", "Vector Database"],
-      github: "https://github.com/AbdullahUsama/Pakistan-Penal-Code-RAG-Chatbot",
-      demo: "https://pakistan-penal-code-rag-chatbot.streamlit.app/",
-    },
-    {
-      title: "Bounding Box Refinement Pipeline",
-      description:
-        "Pipeline to make YOLO bounding boxes more precise and tight around the target objects. Making the data more precise and improving localization.",
-      tech: ["YOLO", "SAM", "Computer Vision", "Python", "Masking"],
-      github: "https://github.com/AbdullahUsama/fixing-loose-bounding-boxes",
-      demo: "https://medium.com/@ausama.bese22seecs/fixing-loose-bounding-boxes-a-sam-powered-approach-for-yolo-datasets-ea96836a5730",
-    },
-    {
-      title: "Finetuned Mistral-7b (50+ Downloads on Hugging Face)",
-      description:
-        "A fine-tuned Mistral-7B-Instruct-v0.3 model capable of generating opinion-style text in the distinctive writing style of Pakistani diplomat, journalist, and political scientist, Maleeha Lodhi.",
-      tech: ["Mistral-7B", "LLM", "Fine-tuning", "PEFT", "LoRA", "Python", "Hugging Face"],
-      github: "https://github.com/AbdullahUsama/mistral-7b-finetune",
-      demo: "https://huggingface.co/abdullah1027/mistral-7b-instruct-finetuned-maleeha-lodhi-style",
-    },
-    {
-      title: "Football Video Analysis",
-      description:
-        "Comprehensive football match analysis system with player tracking, distance estimation, and possession analysis.",
-      tech: ["YOLO", "OpenCV", "SORT Tracking", "Python"],
-      github: "https://github.com/AbdullahUsama/football-video-analysis",
-    },
-    {
-      title: "Plant E-Commerce App",
-      description:
-        "Full-stack e-commerce platform with secure authentication, multilingual support, and payment integration.",
-      tech: ["MERN", "Stripe", "Clerk.com", "React-i18n"],
-      github: "https://github.com/AbdullahUsama/plant-ecommerce-app",
-      // demo: "#",
-    },
-    {
-      title: "Hand Gesture Volume Control",
-      description:
-        "Real-time hands-free volume control system using dynamic hand gestures, leveraging MediaPipe and Pycaw for precise landmark detection and system audio integration.",
-      tech: ["MediaPipe", "OpenCV", "Pycaw", "NumPy", "Computer Vision"],
-      github: "https://github.com/AbdullahUsama/hand-volume-control", // Replace with actual URL
-      // demo: "#",
-    },
-    {
-      title: "Video-Stream App",
-      description:
-        "Cloud-based video streaming application with microservices architecture, secure authentication, scalable backend, and real-time media processing on Google Cloud.",
-      tech: ["React.js", "Google Cloud Run", "Clerk.com", "JWT", "Firebase", "GCS", "API Gateway"],
-      github: "https://github.com/AbdullahUsama/video-stream-app", // Replace with actual URL
-      demo: "https://video-stream-app-delta.vercel.app/",
-    },
-    {
-      title: "Transformer From Scratch",
-      description:
-        "Educational implementation of the Transformer architecture based on the 'Attention Is All You Need' paper. Built from scratch in PyTorch to understand attention, positional encoding, multi-head mechanisms, and encoder-decoder structure.",
-      tech: ["PyTorch", "Python", "NLP", "Deep Learning", "Attention", "Positional Encoding"],
-      github: "https://github.com/AbdullahUsama/transformer-from-scratch", // Replace with your actual GitHub repo URL
-    }
+  const nameLine1 = "ABDULLAH"
+  const nameLine2 = "USAMA"
 
+  const letterVariants = {
+    hidden: { y: "110%", rotate: 4 },
+    visible: (i: number) => ({
+      y: "0%",
+      rotate: 0,
+      transition: { duration: 0.9, delay: 0.06 * i + 0.2, ease: [0.22, 1, 0.36, 1] as const },
+    }),
+  }
 
-  ]
-
-  const skills = [
-    { category: "Programming Languages", items: ["JavaScript", "Python", "C++", "SQL"] },
-    { category: "Web Development", items: ["React.js", "Next.js", "Tailwind CSS", "TypeScript", "Node.js", "Express.js", "FastAPI", "RESTful APIs"] },
-    { category: "AI/ML & Computer Vision", items: ["TensorFlow", "PyTorch", "OpenCV", "YOLO", "MediaPipe", "LangChain", "LangSmith"] },
-    { category: "Databases", items: ["MongoDB", "MySQL", "PostgreSQL", "Weaviate", "ChromaDB", "Pinecone"] },
-    { category: "Cloud & Deployment", items: ["Docker", "Vercel", "Render", "Google Cloud"] },
-    { category: "Tools & Platforms", items: ["Git", "GitHub", "Clerk.com", "Stripe", "Pycaw", "React-i18n"] },
-  ];
+  const featured = projects.filter((p) => p.featured)
+  const rest = projects.filter((p) => !p.featured)
 
   return (
     <>
-      {/* Structured Data JSON-LD */}
       {structuredData.map((schema, index) => (
         <script
           key={index}
@@ -316,362 +362,357 @@ export default function Portfolio() {
 
       <div className={styles.container}>
         <CursorFollower />
+        <div className={styles.grain} aria-hidden="true" />
+
         {/* Navigation */}
-        <nav className={styles.nav}>
+        <nav className={`${styles.nav} ${scrolled ? styles.navScrolled : ""}`}>
           <div className={styles.navContent}>
-            <div className={styles.navBrand}>Abdullah Usama</div>
+            <button onClick={() => scrollToSection("hero")} className={styles.navBrand}>
+              AU<span className={styles.navBrandDot}>.</span>
+            </button>
 
             <div className={styles.navLinks}>
-              {["About", "Experience", "Projects", "Skills", "Contact"].map((item) => (
+              {["About", "Experience", "Projects", "Skills", "Contact"].map((item, i) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
                   className={`${styles.navLink} ${activeSection === item.toLowerCase() ? styles.navLinkActive : ""}`}
                 >
+                  <span className={styles.navLinkIndex}>0{i + 1}</span>
                   {item}
                 </button>
               ))}
             </div>
 
-            <button onClick={toggleDarkMode} className={styles.themeToggle}>
-              {darkMode ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
+            <div className={styles.navActions}>
+              <a href="/Abdullah_Usama_CV.pdf" download className={styles.navCv}>
+                CV <Download size={13} />
+              </a>
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className={styles.themeToggle}
+                aria-label="Toggle theme"
+              >
+                {darkMode ? <Sun size={15} /> : <Moon size={15} />}
+              </button>
+            </div>
           </div>
         </nav>
 
-        {/* Hero Section */}
-        {/* test */}
-        <section id="hero" className={styles.hero}>
-          {darkMode && (
-            <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, zIndex: 0 }}>
-              <Aurora
-                colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-                blend={0.8}
-                amplitude={1.0}
-                speed={0.5}
-              />
-            </div>
-          )}
-          <BackgroundPaths />
-          <div className={styles.heroContentCentered} style={{ position: 'relative', zIndex: 10 }}>
-            <div className={styles.heroText}>
-              <SplitText
-                text="Abdullah Usama"
-                className={styles.heroTitle}
-                tag="h1"
-                delay={100}
-                duration={0.6}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="center"
-              />
-              {/* <div className={styles.heroDivider} /> */}
+        {/* Hero */}
+        <section id="hero" ref={heroRef} className={styles.hero}>
+          <div className={styles.heroGrid} aria-hidden="true" />
+          <div className={styles.heroGlow} aria-hidden="true" />
+
+          <motion.div
+            className={styles.heroContent}
+            style={reduce ? undefined : { y: heroY, opacity: heroOpacity }}
+          >
+            <motion.div
+              className={styles.heroOverline}
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <span className={styles.availabilityDot} />
+              AI Engineer — Open to opportunities
+            </motion.div>
+
+            <h1 className={styles.heroTitle}>
+              <span className={styles.heroLine}>
+                {nameLine1.split("").map((ch, i) => (
+                  <motion.span
+                    key={i}
+                    className={styles.heroChar}
+                    custom={i}
+                    variants={letterVariants}
+                    initial={reduce ? "visible" : "hidden"}
+                    animate="visible"
+                  >
+                    {ch}
+                  </motion.span>
+                ))}
+              </span>
+              <span className={`${styles.heroLine} ${styles.heroLineOutline}`}>
+                {nameLine2.split("").map((ch, i) => (
+                  <motion.span
+                    key={i}
+                    className={styles.heroChar}
+                    custom={i + nameLine1.length}
+                    variants={letterVariants}
+                    initial={reduce ? "visible" : "hidden"}
+                    animate="visible"
+                  >
+                    {ch}
+                  </motion.span>
+                ))}
+              </span>
+            </h1>
+
+            <motion.div
+              className={styles.heroMeta}
+              initial={reduce ? false : { opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1.1 }}
+            >
               <p className={styles.heroSubtitle}>
-                <span className={styles.heroSubtitleDesktop}>Passionate Software Engineer expert in Machine Learning, Deep Learning, Computer Vision and LLMs</span>
-                <span className={styles.heroSubtitleMobile}>AI Engineer • ML • DL<br />Computer Vision</span>
+                I build <em>AI agents</em>, <em>RAG systems</em>, and{" "}
+                <em>computer-vision pipelines</em> that ship — from fine-tuned LLMs to
+                full-stack products. Software Engineering @ NUST.
               </p>
 
-            </div>
+              <div className={styles.heroActions}>
+                <button onClick={() => scrollToSection("projects")} className={styles.ctaPrimary}>
+                  See the work <ArrowDown size={16} />
+                </button>
+                <button onClick={() => scrollToSection("contact")} className={styles.ctaGhost}>
+                  Get in touch <ArrowUpRight size={16} />
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
 
-            <div className={styles.heroActions}>
-              <button onClick={() => scrollToSection("contact")} className={styles.ctaButton}>
-                <span>Get In Touch</span>
-                <ArrowRight size={16} />
-              </button>
-              {/* New Download CV Button */}
-              <a href="/Abdullah_Usama_CV.pdf" download className={styles.ctaButton}> {/* Assuming your CV is in the public folder as Abdullah_Usama_CV.pdf */}
-                <span>Download CV</span>
-                <Download size={16} />
-              </a>
+          <motion.div
+            className={styles.heroStats}
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+          >
+            {stats.map((s) => (
+              <div key={s.label} className={styles.statBlock}>
+                <span className={styles.statValue}>{s.value}</span>
+                <span className={styles.statLabel}>{s.label}</span>
+              </div>
+            ))}
+          </motion.div>
+        </section>
+
+        {/* Marquee */}
+        <div className={styles.marquee} aria-hidden="true">
+          <div className={styles.marqueeTrack}>
+            {[0, 1].map((dup) => (
+              <div key={dup} className={styles.marqueeGroup}>
+                {marqueeItems.map((item) => (
+                  <span key={item} className={styles.marqueeItem}>
+                    {item} <span className={styles.marqueeStar}>✦</span>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* About */}
+        <section id="about" className={styles.section}>
+          <SectionHeading index="01" title="About" />
+          <div className={styles.aboutGrid}>
+            <Reveal delay={0.1}>
+              <p className={styles.aboutLead}>
+                Final-year Software Engineering student at{" "}
+                <span className={styles.accentText}>NUST</span>, working at the edge of
+                applied AI — fine-tuning LLMs and VLMs, building autonomous agents, and
+                turning research into products people actually use.
+              </p>
+            </Reveal>
+            <div className={styles.aboutCards}>
+              <Reveal delay={0.15}>
+                <div className={styles.infoCard}>
+                  <span className={styles.infoCardLabel}>Education</span>
+                  <p className={styles.infoCardTitle}>B.E. Software Engineering</p>
+                  <p className={styles.infoCardSub}>
+                    National University of Sciences & Technology (NUST) — SEECS, Islamabad
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={0.25}>
+                <div className={styles.infoCard}>
+                  <span className={styles.infoCardLabel}>Focus</span>
+                  <p className={styles.infoCardTitle}>Applied AI Engineering</p>
+                  <p className={styles.infoCardSub}>
+                    LLM agents & automation · Computer vision · Full-stack AI products
+                  </p>
+                </div>
+              </Reveal>
             </div>
           </div>
         </section>
 
-        {/* About Section */}
-        <section id="about" className={styles.about}>
-          <div className={styles.aboutContent}>
-            <div className={styles.aboutText}>
-              <h2 className={styles.sectionTitle}>About</h2>
-              <div className={styles.sectionDivider} />
-
-              <div className={styles.aboutDescription}>
-                <p>
-                  I'm a final-year Software Engineering student at the National University of Sciences and Technology
-                  (NUST), with a experience in AI Agents, Automations and Web Development.
-                </p>
-                <p>
-                  I have worked on fine-tuning Large Language Models (LLMs) and Vision-Language Models (VLMs),
-                  developing intelligent AI agents, creating automation solutions, and building scalable web applications.
-                  I'm passionate about using cutting-edge AI technologies to solve real life problems.
-                </p>
-              </div>
-            </div>
-
-            <div className={styles.aboutDetails}>
-              <GlareHover
-                width="100%"
-                height="auto"
-                background="var(--bg-secondary, #181818)"
-                borderRadius="8px"
-                borderColor="var(--border-color, #333)"
-                glareColor="#ffffff"
-                glareOpacity={0.1}
-                glareAngle={-30}
-                glareSize={300}
-                transitionDuration={800}
-                playOnce={false}
-                style={{ padding: 0, display: 'block' }}
-              >
-                <div className={styles.educationCard}>
-                  <h3 className={styles.detailTitle}>Education</h3>
-                  <div className={styles.detailContent}>
-                    <p className={styles.detailMain}>Bachelor of Software Engineering</p>
-                    <p className={styles.detailSub}>National University of Sciences and Technology (NUST), H-12, Islamabad</p>
-                    <p className={styles.detailSmall}>School of Electrical Engineering and Computer Science (SEECS)</p>
+        {/* Experience */}
+        <section id="experience" className={styles.section}>
+          <SectionHeading index="02" title="Experience" />
+          <div className={styles.timeline}>
+            {experience.map((job, i) => (
+              <Reveal key={i} delay={0.05 * i}>
+                <div className={styles.timelineItem}>
+                  <div className={styles.timelineDate}>{job.date}</div>
+                  <div className={styles.timelineBody}>
+                    <h3 className={styles.timelineRole}>{job.role}</h3>
+                    <p className={styles.timelineCompany}>{job.company}</p>
+                    <ul className={styles.timelinePoints}>
+                      {job.points.map((point, j) => (
+                        <li key={j}>{point}</li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              </GlareHover>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
-              <GlareHover
-                width="100%"
-                height="auto"
-                background="var(--bg-secondary, #181818)"
-                borderRadius="8px"
-                borderColor="var(--border-color, #333)"
-                glareColor="#ffffff"
-                glareOpacity={0.1}
-                glareAngle={-30}
-                glareSize={300}
-                transitionDuration={800}
-                playOnce={false}
-                style={{ padding: 0, display: 'block' }}
-              >
-                <div className={styles.focusAreaCard}>
-                  <h3 className={styles.detailTitle}>Focus Areas</h3>
-                  <div className={styles.detailContent}>
-                    <p>Machine Learning & Computer Vision</p>
-                    <p>Full-Stack Web Development</p>
-                    <p>AI-Powered Applications</p>
+        {/* Projects */}
+        <section id="projects" className={styles.section}>
+          <SectionHeading index="03" title="Selected Work" />
+
+          <div className={styles.featuredGrid}>
+            {featured.map((project, i) => (
+              <Reveal key={project.title} delay={0.08 * i} className={styles.featuredRevealCell}>
+                <a
+                  href={project.demo || project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.featuredCard}
+                >
+                  <div className={styles.featuredTop}>
+                    <span className={styles.projectTag}>{project.tag}</span>
+                    <ArrowUpRight className={styles.featuredArrow} size={22} />
                   </div>
-                </div>
-              </GlareHover>
-            </div>
-          </div>
-        </section>
-
-        <section id="experience" className={styles.experience}>
-          <div className={styles.experienceContent}>
-            <h2 className={styles.sectionTitle}>Experience</h2>
-
-            <div className={styles.experienceList}>
-              <div className={styles.experienceItem}>
-                <div className={styles.experienceDate}>
-                  <p>October 2025 – Present</p>
-                </div>
-                <div className={styles.experienceDetails}>
-                  <h3 className={styles.experienceTitle}>LLM and AI Engineer</h3>
-                  <p className={styles.experienceCompany}>Rapids AI</p>
-                  <ul className={styles.experienceDescription}>
-                    <li> - Designing and implementing autonomous AI agents for complex task automation and decision-making</li>
-                    <li> - Building intelligent automation workflows using LLMs to streamline business processes and reduce manual intervention</li>
-                    <li> - Developing multi-agent systems with tool integration and orchestration capabilities</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className={styles.experienceDivider} />
-
-              <div className={styles.experienceItem}>
-                <div className={styles.experienceDate}>
-                  <p>May 2025 – Present</p>
-                </div>
-                <div className={styles.experienceDetails}>
-                  <h3 className={styles.experienceTitle}>Freelancer</h3>
-                  <p className={styles.experienceCompany}>Fiverr</p>
-                  <ul className={styles.experienceDescription}>
-                    <li> - Developed chatbots using RAG architecture for enhanced query responses</li>
-                    <li> - Built intelligent AI agents for automated customer solutions and workflows</li>
-                    <li> - Implemented LLM-powered systems for various client AI automation needs</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className={styles.experienceDivider} />
-
-              <div className={styles.experienceItem}>
-                <div className={styles.experienceDate}>
-                  <p>June 2025 – Sept 2025</p>
-                </div>
-                <div className={styles.experienceDetails}>
-                  <h3 className={styles.experienceTitle}>AI Intern</h3>
-                  <p className={styles.experienceCompany}>Crimson Labs, SEECS</p>
-                  <ul className={styles.experienceDescription}>
-                    <li> - Working on finetuning LLMs</li>
-                    <li> - Creating AI Chatbots for Education</li>
-                    <li> - RAG - Based Systems for Learning</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className={styles.experienceDivider} />
-
-              <div className={styles.experienceItem}>
-                <div className={styles.experienceDate}>
-                  <p>April 2025 – June 2025</p>
-                </div>
-                <div className={styles.experienceDetails}>
-                  <h3 className={styles.experienceTitle}>ML Intern</h3>
-                  <p className={styles.experienceCompany}>OneScreen Solutions, San Diego, California (Remote)</p>
-                  <ul className={styles.experienceDescription}>
-                    <li> - Worked with Vision Transformers (ViT-32) and Vision-Language Models (VLMs) like PaLI-Gemma</li>
-                    <li> - Achieved 7-10% higher mAP by reducing label noise and improving object localization</li>
-                    <li> - Developed end-to-end pipeline combining SAM's pixel-level masks with YOLO annotations</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className={styles.experienceDivider} />
-
-              <div className={styles.experienceItem}>
-                <div className={styles.experienceDate}>
-                  <p>June 2024 – Aug 2024</p>
-                </div>
-                <div className={styles.experienceDetails}>
-                  <h3 className={styles.experienceTitle}>Computer Vision Intern</h3>
-                  <p className={styles.experienceCompany}>Machine Vision & Intelligent Systems Lab (MachVis), SEECS</p>
-                  <ul className={styles.experienceDescription}>
-                    <li> - Engineered computer vision pipelines for real-time object detection and tracking</li>
-                    <li> - Implemented robust feature extraction methods including ORB and optical flow</li>
-                    <li> - Developed real-time tracking systems using SORT and Kalman Filters</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Projects Section */}
-        <section id="projects" className={styles.projects}>
-          <div className={styles.projectsContent}>
-            <h2 className={styles.sectionTitle}>Selected Projects</h2>
-
-            <div className={styles.projectsGrid}>
-              {projects.map((project, index) => (
-                <div key={index} className={styles.projectCard}>
-                  <div className={styles.projectHeader}>
-                    <h3 className={styles.projectTitle}>{project.title}</h3>
-                    <div className={styles.projectLinks}>
-                      <a
-                        href={project.github}
-                        className={styles.projectLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github size={16} />
-                      </a>
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          className={styles.projectLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink size={16} />
-                        </a>
-                      )}
+                  <h3 className={styles.featuredTitle}>{project.title}</h3>
+                  <p className={styles.projectDescription}>{project.description}</p>
+                  <div className={styles.projectFooter}>
+                    <div className={styles.projectTech}>
+                      {project.tech.map((tech) => (
+                        <span key={tech} className={styles.techTag}>
+                          {tech}
+                        </span>
+                      ))}
                     </div>
                   </div>
+                </a>
+              </Reveal>
+            ))}
+          </div>
 
-                  <p className={styles.projectDescription}>{project.description}</p>
+          <div className={styles.projectList}>
+            {rest.map((project, i) => (
+              <Reveal key={project.title} delay={0.04 * i}>
+                <div className={styles.projectRow}>
+                  <span className={styles.projectRowIndex}>
+                    {String(i + featured.length + 1).padStart(2, "0")}
+                  </span>
+                  <div className={styles.projectRowMain}>
+                    <h3 className={styles.projectRowTitle}>{project.title}</h3>
+                    <p className={styles.projectRowDesc}>{project.description}</p>
+                    <div className={styles.projectTech}>
+                      {project.tech.map((tech) => (
+                        <span key={tech} className={styles.techTag}>
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className={styles.projectRowLinks}>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.iconLink}
+                      aria-label={`${project.title} on GitHub`}
+                    >
+                      <Github size={17} />
+                    </a>
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.iconLink}
+                        aria-label={`${project.title} live demo`}
+                      >
+                        <ExternalLink size={17} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
-                  <div className={styles.projectTech}>
-                    {project.tech.map((tech, techIndex) => (
-                      <span key={techIndex} className={styles.techTag}>
-                        {tech}
+        {/* Skills */}
+        <section id="skills" className={styles.section}>
+          <SectionHeading index="04" title="Stack" />
+          <div className={styles.skillsGrid}>
+            {skills.map((group, i) => (
+              <Reveal key={group.category} delay={0.05 * i}>
+                <div className={styles.skillGroup}>
+                  <h3 className={styles.skillCategory}>{group.category}</h3>
+                  <div className={styles.skillChips}>
+                    {group.items.map((skill) => (
+                      <span key={skill} className={styles.skillChip}>
+                        {skill}
                       </span>
                     ))}
                   </div>
                 </div>
-              ))}
-            </div>
+              </Reveal>
+            ))}
           </div>
         </section>
 
-        {/* Skills Section */}
-        <section id="skills" className={styles.skills}>
-          <div className={styles.skillsContent}>
-            <h2 className={styles.sectionTitle}>Skills & Technologies</h2>
-
-            <div className={styles.skillsGrid}>
-              {skills.map((skillGroup, index) => (
-                <div key={index} className={styles.skillGroup}>
-                  <h3 className={styles.skillCategory}>{skillGroup.category}</h3>
-                  <div className={styles.skillList}>
-                    {skillGroup.items.map((skill, skillIndex) => (
-                      <p key={skillIndex} className={styles.skillItem}>
-                        {skill}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
+        {/* Contact */}
         <section id="contact" className={styles.contact}>
-          <div className={styles.contactContent}>
-            <h2 className={styles.sectionTitle}>Let's Connect</h2>
+          <Reveal>
+            <p className={styles.contactKicker}>05 — Contact</p>
+            <h2 className={styles.contactTitle}>
+              Let&apos;s build
+              <br />
+              something <span className={styles.contactTitleAccent}>smart.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <a href="mailto:ausama.bese22seecs@seecs.edu.pk" className={styles.contactEmail}>
+              ausama.bese22seecs@seecs.edu.pk
+              <ArrowUpRight className={styles.contactEmailArrow} />
+            </a>
+          </Reveal>
 
-            <div className={styles.contactText}>
-              <p>
-                I'm always interested in discussing new opportunities, collaborations, or innovative projects. Feel free
-                to reach out if you'd like to connect.
-              </p>
-            </div>
-
-            <div className={styles.contactGrid}>
-              <a href="mailto:ausama.bese22seecs@seecs.edu.pk" className={styles.contactCard}>
-                <Mail size={24} />
-                <span>Email</span>
+          <Reveal delay={0.25}>
+            <div className={styles.contactLinks}>
+              <a href="mailto:ausama.bese22seecs@seecs.edu.pk" className={styles.contactChip}>
+                <Mail size={16} /> Email
               </a>
-
-              <div
-                className={`${styles.contactCard} ${styles.phoneCard}`}
-                onClick={copyPhoneNumber}
-                style={{ cursor: 'pointer', position: 'relative' }}
+              <button onClick={copyPhoneNumber} className={styles.contactChip}>
+                <Phone size={16} /> 0308 8404523{" "}
+                {phoneCopied ? <Check size={14} className={styles.copiedIcon} /> : <Copy size={14} />}
+              </button>
+              <a
+                href="https://www.linkedin.com/in/abdullahusama/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactChip}
               >
-                <Phone size={24} />
-                <span>Phone - 03088404523</span>
-                <div className={styles.copyIcon}>
-                  {phoneCopied ? <Check size={16} /> : <Copy size={16} />}
-                </div>
-              </div>
-
-              <a href="https://www.linkedin.com/in/abdullahusama/" className={styles.contactCard}>
-                <Linkedin size={24} />
-                <span>LinkedIn</span>
+                <Linkedin size={16} /> LinkedIn
               </a>
-
-              <a href="https://github.com/AbdullahUsama" className={styles.contactCard}>
-                <Github size={24} />
-                <span>GitHub</span>
+              <a
+                href="https://github.com/AbdullahUsama"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactChip}
+              >
+                <Github size={16} /> GitHub
+              </a>
+              <a href="/Abdullah_Usama_CV.pdf" download className={styles.contactChip}>
+                <Download size={16} /> Download CV
               </a>
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* Footer */}
         <footer className={styles.footer}>
-          <div className={styles.footerContent}>
-            <p>Made by Abdullah Usama </p>
-            <p></p>
-          </div>
+          <p>© {new Date().getFullYear()} Abdullah Usama</p>
+          <p className={styles.footerMeta}>Islamabad, Pakistan — Built with Next.js</p>
         </footer>
       </div>
     </>
