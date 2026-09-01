@@ -30,23 +30,35 @@ body.binary-cursor-enabled *::after {
 }
 
 :root {
-  --bg-primary: #f5f1e8;
-  --bg-secondary: #ebe5d9;
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
-  --border-color: #d4cbb8;
-  --border-hover: #9ca3af;
+  --bg: #f2f0e9;
+  --bg-elevated: #faf9f5;
+  --bg-inset: #e9e6dc;
+  --ink: #15150f;
+  --ink-secondary: #4c4c42;
+  --muted: #7d7d71;
+  --line: rgba(21, 21, 15, 0.12);
+  --line-strong: rgba(21, 21, 15, 0.28);
+  --accent: #4d6b00;
+  --accent-bright: #5f8400;
+  --accent-ink: #f5ffd6;
+  --accent-soft: rgba(77, 107, 0, 0.1);
+  --glow: rgba(154, 205, 0, 0.16);
 }
 
 [data-theme="dark"] {
-  --bg-primary: #000000;
-  --bg-secondary: #0f0f0f;
-  --text-primary: #ffffff;
-  --text-secondary: #d1d5db;
-  --text-muted: #6b7280;
-  --border-color: #1f2937;
-  --border-hover: #4b5563;
+  --bg: #0a0a0b;
+  --bg-elevated: #121214;
+  --bg-inset: #161619;
+  --ink: #f2f2ec;
+  --ink-secondary: #b9b9ae;
+  --muted: #77776d;
+  --line: rgba(242, 242, 236, 0.1);
+  --line-strong: rgba(242, 242, 236, 0.25);
+  --accent: #c8f14a;
+  --accent-bright: #d8fb6b;
+  --accent-ink: #131500;
+  --accent-soft: rgba(200, 241, 74, 0.08);
+  --glow: rgba(200, 241, 74, 0.1);
 }
 
 html,
@@ -60,15 +72,22 @@ html {
 }
 
 body {
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    sans-serif;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-family: var(--font-grotesk), system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
   line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -76,36 +95,24 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9ca3af;
-  border-radius: 3px;
+  background: var(--line-strong);
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
+  background: var(--accent);
 }
 
-[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: #4b5563;
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
-}
-
-/* Remove default button styles */
 button {
   font-family: inherit;
 }
 
-/* Remove default link styles */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* Ensure images are responsive */
 img {
   max-width: 100%;
   height: auto;
-  z-index: 10;
 }
